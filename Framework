@@ -1,5 +1,5 @@
 Game Idea:
-In this game, two mins are competing against each other to store as much food pips as they can before winter comes. One only comes out in the morning while the other only comes out in the afternoon. Each day, new food pips appear on the field and the mins only have a limited amount of time to locate them and bring them to their nest. (Optional: The food pips start at 3 values of freshness and degrade for each turn they are left on the field.) The min who either fills its nest first or has the most food stored once winter comes is declared the top min.
+In this game, two minikins are competing against each other to store as much food pips as they can before winter comes. One only comes out in the morning while the other only comes out in the afternoon. Each day, new food pips appear on the field and the mins only have a limited amount of time to locate them and bring them to their nest. (Optional: The food pips start at 3 values of freshness and degrade for each turn they are left on the field.) The min who either fills its nest first or has the most food stored once winter comes is declared the top min.
 
 1. Create square grid board
 2. Create min 1 and min 2
