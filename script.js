@@ -47,8 +47,7 @@ class Minikin {
             color: minColor
         }
         this.map[minY][minX] = 4
-        this.active = false
-        document.addEventListener('keydown', this.moveMin)
+        this.active = false        
     }
     switchState() {
         if(this.active) {
@@ -57,179 +56,120 @@ class Minikin {
         else {
             this.active = true
         }
-    }
-    moveMin = ({keyCode}) => {
-        console.log("The keyCode is", keyCode)
-        let footprints = this.map[this.position.y][this.position.x]
-        let upDir = this.map[this.position.y - 1][this.position.x]
-        let downDir = this.map[this.position.y + 1][this.position.x]
-        let rightDir = this.map[this.position.y][this.position.x + 1]
-        let leftDir = this.map[this.position.y][this.position.x - 1]
-        // Up
-        if(keyCode === 87 || keyCode === 38) {
-            switch(upDir) {
+    } 
+}
+
+// Functions
+function drawMap(minColor) {
+    for(let x = 0; x < map.length; x++) {
+        for(let y = 0; y < map[x].length; y++) {
+            const blockType = map[x][y]
+            let color = 'transparent'
+            switch(blockType) {
+                case 0:
+                    color = 'pink'
+                break;
+                case 1:
+                    color = 'brown'
+                break;
                 case 2:
-                    footprints = 3
-                    upDir = 4
-                    this.position.y--
-                    this.drawMap(this.position.color) 
+                    color = 'yellow'
                 break;
                 case 3:
-                    footprints = 2
-                    upDir = 4
-                    this.position.y--
-                    this.drawMap(this.position.color) 
+                    color = 'orange'
+                break;
+                case 4:
+                    color = minColor
+                break;
+                case 5:
+                    color = 'red'
                 break;
             }
-            this.drawMap(this.position.color) 
-        }
-        // Right
-        else if(keyCode === 68 || keyCode === 39) {
-            switch(rightDir) {
-                case 2:
-                    footprints = 3
-                    rightDir = 4
-                    this.position.x++
-                    this.drawMap(this.position.color) 
-                    break;
-                case 3:
-                    footprints = 2
-                    rightDir = 4
-                    this.position.x++
-                    this.drawMap(this.position.color) 
-                    break;
-            }
-            this.drawMap(this.position.color) 
-        }
-        // Down
-        else if(keyCode === 83 || keyCode === 40) {
-            switch(downDir) {
-                case 2:
-                    footprints = 3
-                    downDir = 4
-                    this.position.y++
-                    this.drawMap(this.position.color) 
-                    break;
-                case 3:
-                    footprints = 2
-                    downDir = 4
-                    this.position.y++
-                    this.drawMap(this.position.color) 
-                    break;
-            }
-            this.drawMap(this.position.color) 
-        }
-        // Left
-        else if(keyCode === 65 || keyCode === 37) {
-            switch(leftDir) {
-                case 2:
-                    footprints = 3
-                    leftDir = 4
-                    this.position.x--
-                    this.drawMap(this.position.color) 
-                    break;
-                case 3:
-                    footprints = 2
-                    leftDir = 4
-                    this.position.x--
-                    this.drawMap(this.position.color) 
-                    break;
-            }
-            this.drawMap(this.position.color) 
-        }
-    }
-    drawMap(minColor) {
-        for(let x = 0; x < this.map.length; x++) {
-            for(let y = 0; y < this.map[x].length; y++) {
-                const blockType = this.map[x][y]
-                let color = 'transparent'
-                switch(blockType) {
-                    case 0:
-                        color = 'pink'
-                    break;
-                    case 1:
-                        color = 'brown'
-                    break;
-                    case 2:
-                        color = 'yellow'
-                    break;
-                    case 3:
-                        color = 'orange'
-                    break;
-                    case 4:
-                        color = minColor
-                    break;
-                    case 5:
-                        color = 'red'
-                    break;
-                }
-                tbCtx.fillStyle = color
-                tbCtx.fillRect(y * (blockSize + border), x * (blockSize + border), blockSize, blockSize)
-            }
+            tbCtx.fillStyle = color
+            tbCtx.fillRect(y * (blockSize + border), x * (blockSize + border), blockSize, blockSize)
         }
     }
 }
 
-// Functions
-// function drawMap(minColor) {
-//     for(let x = 0; x < map.length; x++) {
-//         for(let y = 0; y < map[x].length; y++) {
-//             const blockType = map[x][y]
-//             let color = 'transparent'
-//             switch(blockType) {
-//                 case 0:
-//                     color = 'pink'
-//                 break;
-//                 case 1:
-//                     color = 'brown'
-//                 break;
-//                 case 2:
-//                     color = 'yellow'
-//                 break;
-//                 case 3:
-//                     color = 'orange'
-//                 break;
-//                 case 4:
-//                     color = minColor
-//                 break;
-//                 case 5:
-//                     color = 'red'
-//                 break;
-//             }
-//             tbCtx.fillStyle = color
-//             tbCtx.fillRect(y * (blockSize + border), x * (blockSize + border), blockSize, blockSize)
-//         }
-//     }
-// }
-
-
-// Event Listeners
-// document.addEventListener('keydown', function(e) {
-//     const placement = map[activeMin.y][activeMin.x]
-//     const upDir = map[activeMin.y - 1][activeMin.x]
-//     const downDir = map[activeMin.y + 1][activeMin.x]
-//     const rightDir = map[activeMin.y][activeMin.x + 1]
-//     const leftDir = map[activeMin.y][activeMin.x - 1]
-//     // Up
-//     if(e.key === 'w' || e.key == 'ArrowUp') {
-//         console.log(e.key)
-//         switch(upDir) {
-//             case 0: {
-//                 placement = 0
-//                 upDir = 4
-//                 minikin1.currentMin.y--
-//                 drawMap(minikin1.currentMin.color)
-//             }  
-//             break;
-//         }
-//     }
-//     // Right
-//     // Down
-//     // Left
-// })
+function moveMin({keyCode}) {
+    let upDir = map[activeMin.position.y - 1][activeMin.position.x]
+    let downDir = map[activeMin.position.y + 1][activeMin.position.x]
+    let rightDir = map[activeMin.position.y][activeMin.position.x + 1]
+    let leftDir = map[activeMin.position.y][activeMin.position.x - 1]
+    // Up
+    if(keyCode === 87 || keyCode === 38) {
+        switch(upDir) {
+            case 2:
+                map[activeMin.position.y][activeMin.position.x] = 3
+                map[activeMin.position.y - 1][activeMin.position.x] = 4
+                activeMin.position.y--
+            break;
+            case 3:
+                map[activeMin.position.y][activeMin.position.x] = 2
+                map[activeMin.position.y - 1][activeMin.position.x] = 4
+                activeMin.position.y-- 
+            break;
+        }
+        drawMap(activeMin.position.color) 
+    }
+    // Right
+    else if(keyCode === 68 || keyCode === 39) {
+        switch(rightDir) {
+            case 2:
+                map[activeMin.position.y][activeMin.position.x] = 3
+                map[activeMin.position.y][activeMin.position.x + 1] = 4
+                activeMin.position.x++
+                break;
+            case 3:
+                map[activeMin.position.y][activeMin.position.x] = 2
+                map[activeMin.position.y][activeMin.position.x + 1] = 4
+                activeMin.position.x++
+                break;
+        }
+        drawMap(activeMin.position.color) 
+    }
+    // Down
+    else if(keyCode === 83 || keyCode === 40) {
+        switch(downDir) {
+            case 2:
+                map[activeMin.position.y][activeMin.position.x] = 3
+                map[activeMin.position.y + 1][activeMin.position.x] = 4
+                activeMin.position.y++
+                break;
+            case 3:
+                map[activeMin.position.y][activeMin.position.x] = 2
+                map[activeMin.position.y + 1][activeMin.position.x] = 4
+                activeMin.position.y++
+                break;
+        }
+        drawMap(activeMin.position.color) 
+    }
+    // Left
+    else if(keyCode === 65 || keyCode === 37) {
+        switch(leftDir) {
+            case 2:
+                map[activeMin.position.y][activeMin.position.x] = 3
+                map[activeMin.position.y][activeMin.position.x - 1] = 4
+                activeMin.position.x--
+                break;
+            case 3:
+                map[activeMin.position.y][activeMin.position.x] = 2
+                map[activeMin.position.y][activeMin.position.x - 1] = 4
+                activeMin.position.x--
+                break;
+        }
+        drawMap(activeMin.position.color) 
+    }
+}
 
 // Page startup
 const minikin1 = new Minikin(map, 2, 8, 'blue')
-// const minikin2 = new Minikin(map, 20, 8, 'purple')
+const minikin2 = new Minikin(map, 20, 8, 'purple')
+minikin1.switchState()
 activeMin = minikin1
-activeMin.drawMap(activeMin.position.color)
+drawMap(activeMin.position.color)
+
+// Event Listeners
+if(activeMin) {
+document.addEventListener('keydown', moveMin)
+}
