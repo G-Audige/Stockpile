@@ -1,0 +1,32 @@
+Game Idea:
+In this game, two mins are competing against each other to store as much food pips as they can before winter comes. One only comes out in the morning while the other only comes out in the afternoon. Each day, new food pips appear on the field and the mins only have a limited amount of time to locate them and bring them to their nest. (Optional: The food pips start at 3 values of freshness and degrade for each turn they are left on the field.) The min who either fills its nest first or has the most food stored once winter comes is declared the top min.
+
+1. Create square grid board
+2. Create min 1 and min 2
+    a. Give mins inventory arrays
+3. Place min 1 on board and assign currentMin state (start of game)
+4. Enable currentMin grid-based movement and keybind controls
+    a. Create collision detection
+    b. Contain movement freedom to visible board
+5. Create ability to switch currentMin state between min 1 and min 2 (min 1 and min 2 are not meant to exist at the same time)
+    a. Create nest1 and nest2
+    b. Give nest1 and nest2 inventory objects
+    c. Assign nest1 the currentNest state (start of game)
+    d. Give currentNest collision properties
+    e. When currentMin collides with currentNest, reassign currentMin and currentNest states to the alternate min and nest
+    f. Spawn the alternate min as the currentMin at the alternate nest
+6. Create food pips
+7. Randomize placement of food pips on board
+    a. Give food pips collision properties
+8. Give currentMin the ability to erase food pips from the board upon collsion and create a food pip item in its inventory
+    a. Display the number of food pips that the currentMin is holding
+9. Have collision between currentMin and currentNest clear the inventory array of currentMin and copy the contents into the inventory object  of currentNest before reassigning states to alternate min and nest
+10. Create turn 1 and turn 2
+11. Create rounds that end once turn 2 has ended
+    a. On round transition, display how many food pips each min has in its nest
+    b. On round transition, display round # and how many rounds are left until winter comes
+12. Add timer (step counter) to turns
+    a. Once timer runs out, automatically copy half of currentMins inventory to currentNest before reassigning states to alternate min and nest. (Optional: Have amount of inventory copied vary based on the distance between currentMin and currentNest)
+13. Create win state
+    a. Once the end of the last round is detected, compare inventory of nest 1 and nest 2 against each other. The top min is displayed on screen based on which one's nest has more food in it
+14. (Optional: Create option to replay)
