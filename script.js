@@ -2,8 +2,12 @@ document.querySelector('title').textContent = "Top Min"
 
 // Declarations
 let activeMin
+let turn = 1
+let rounds = 5
+
 const blockSize = 25
 const border = 1
+
 const canvas = document.querySelector('#board')
 const cvCtx = canvas.getContext('2d')
 const tiles = document.querySelector('#tile-borders')
@@ -88,6 +92,7 @@ function drawMap(minColor) {
             tbCtx.fillStyle = color
             tbCtx.fillRect(y * (blockSize + border), x * (blockSize + border), blockSize, blockSize)
         }
+        
     }
 }
 
@@ -162,12 +167,23 @@ function moveMin({keyCode}) {
     }
 }
 
+function spawnMin() {
+    if(turn === 1) {
+        const minikin1 = new Minikin(map, 2, 8, 'blue')
+        minikin1.switchState()
+        activeMin = minikin1
+        drawMap(activeMin.position.color)
+    }
+    else {
+        const minikin2 = new Minikin(map, 20, 8, 'purple')
+        minikin2.switchState()
+        activeMin = minikin2
+        drawMap(activeMin.position.color)       
+    }
+}
+
 // Page startup
-const minikin1 = new Minikin(map, 2, 8, 'blue')
-const minikin2 = new Minikin(map, 20, 8, 'purple')
-minikin1.switchState()
-activeMin = minikin1
-drawMap(activeMin.position.color)
+spawnMin()
 
 // Event Listeners
 if(activeMin) {
