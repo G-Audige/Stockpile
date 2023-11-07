@@ -30,7 +30,7 @@ const map = [
     [0,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,0],
     [0,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,0],
     [0,0,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,0,0],
-    [1,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,1],
+    [3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3],
     [0,0,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,0,0],
     [0,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,0],
     [0,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,0],
@@ -62,9 +62,29 @@ class Minikin {
         }
     } 
 }
+class Nest {
+    constructor(map, nestX, nestY, nestColor) {
+        this.map = map
+        this.position = {
+            x: nestX,
+            y: nestY,
+            color: nestColor
+        }
+        this.map[nestY][nestX] = 1
+        this.active = false
+    }
+    switchState() {
+        if(this.active) {
+            this.active = false
+        }
+        else {
+            this.active = true
+        }
+    }
+}
 
 // Functions
-function drawMap(minColor) {
+function drawMap(minColor, nestColor) {
     for(let x = 0; x < map.length; x++) {
         for(let y = 0; y < map[x].length; y++) {
             const blockType = map[x][y]
@@ -74,7 +94,7 @@ function drawMap(minColor) {
                     color = 'pink'
                 break;
                 case 1:
-                    color = 'brown'
+                    color = nestColor
                 break;
                 case 2:
                     color = 'yellow'
@@ -120,6 +140,11 @@ function moveMin({keyCode}) {
     // Right
     else if(keyCode === 68 || keyCode === 39) {
         switch(rightDir) {
+            case 1:
+                map[activeMin.position.y][activeMin.position.x] = 2
+                activeMin.switchState()
+                spawnMin()
+                break;
             case 2:
                 map[activeMin.position.y][activeMin.position.x] = 3
                 map[activeMin.position.y][activeMin.position.x + 1] = 4
@@ -130,6 +155,7 @@ function moveMin({keyCode}) {
                 map[activeMin.position.y][activeMin.position.x + 1] = 4
                 activeMin.position.x++
                 break;
+            
         }
         drawMap(activeMin.position.color) 
     }
@@ -152,6 +178,11 @@ function moveMin({keyCode}) {
     // Left
     else if(keyCode === 65 || keyCode === 37) {
         switch(leftDir) {
+            case 1:
+                map[activeMin.position.y][activeMin.position.x] = 2
+                activeMin.switchState()
+                spawnMin()
+                break;
             case 2:
                 map[activeMin.position.y][activeMin.position.x] = 3
                 map[activeMin.position.y][activeMin.position.x - 1] = 4
@@ -173,17 +204,21 @@ function spawnMin() {
         minikin1.switchState()
         activeMin = minikin1
         drawMap(activeMin.position.color)
+        turn++
     }
     else {
         const minikin2 = new Minikin(map, 20, 8, 'purple')
         minikin2.switchState()
         activeMin = minikin2
-        drawMap(activeMin.position.color)       
+        drawMap(activeMin.position.color)
+        turn = 1       
     }
 }
 
 // Page startup
 spawnMin()
+const nest1 = new Nest(map, 0, 8, 'blue', 'brown')
+const nest2 = new Nest(map, 22, 8, 'purple', 'brown')
 
 // Event Listeners
 if(activeMin) {
