@@ -4,6 +4,7 @@ document.querySelector('title').textContent = "Top Min"
 let activeMin
 let turn = 1
 let rounds = 5
+let round = 1
 
 const blockSize = 25
 const border = 1
@@ -13,7 +14,7 @@ const cvCtx = canvas.getContext('2d')
 const tiles = document.querySelector('#tile-borders')
 const tbCtx = tiles.getContext('2d')
 const ui = document.querySelector('#ui')
-const uiCtx = ui.getContext('#2d')
+const uiCtx = ui.getContext('2d')
 // Create layout of map.
     // 0 = Walls (Gray)
     // 1 = Nest 1 (Brown)
@@ -30,7 +31,7 @@ const map = [
     [0,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,0],
     [0,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,0],
     [0,0,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,0,0],
-    [3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3],
+    [1,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,1],
     [0,0,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,0,0],
     [0,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,0],
     [0,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,0],
@@ -39,7 +40,7 @@ const map = [
     [0,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,0],
     [0,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-] 
+]
 
 // Classes and objects
 class Minikin {
@@ -51,7 +52,9 @@ class Minikin {
             color: minColor
         }
         this.map[minY][minX] = 4
-        this.active = false        
+        this.active = false
+        this.foodPips = 0
+        this.storage = []        
     }
     switchState() {
         if(this.active) {
@@ -62,29 +65,9 @@ class Minikin {
         }
     } 
 }
-class Nest {
-    constructor(map, nestX, nestY, nestColor) {
-        this.map = map
-        this.position = {
-            x: nestX,
-            y: nestY,
-            color: nestColor
-        }
-        this.map[nestY][nestX] = 1
-        this.active = false
-    }
-    switchState() {
-        if(this.active) {
-            this.active = false
-        }
-        else {
-            this.active = true
-        }
-    }
-}
 
 // Functions
-function drawMap(minColor, nestColor) {
+function drawMap(minColor) {
     for(let x = 0; x < map.length; x++) {
         for(let y = 0; y < map[x].length; y++) {
             const blockType = map[x][y]
@@ -94,7 +77,7 @@ function drawMap(minColor, nestColor) {
                     color = 'pink'
                 break;
                 case 1:
-                    color = nestColor
+                    color = 'brown'
                 break;
                 case 2:
                     color = 'yellow'
@@ -112,7 +95,14 @@ function drawMap(minColor, nestColor) {
             tbCtx.fillStyle = color
             tbCtx.fillRect(y * (blockSize + border), x * (blockSize + border), blockSize, blockSize)
         }
-        
+    uiCtx.font = '20px Verdana'
+    uiCtx.fillStyle = 'black'
+    uiCtx.fillRect(0,0,500,500)
+    uiCtx.fillStyle = 'white'
+    uiCtx.fillText(`Turn ${turn}`, 20, 30)
+    uiCtx.fillText(` Round ${round}`, 260, 30)
+    uiCtx.font = '16px Verdana'
+    uiCtx.fillText(` Food Pips: ${activeMin.foodPips}`, 500, 80)
     }
 }
 
@@ -141,9 +131,10 @@ function moveMin({keyCode}) {
     else if(keyCode === 68 || keyCode === 39) {
         switch(rightDir) {
             case 1:
-                map[activeMin.position.y][activeMin.position.x] = 2
-                activeMin.switchState()
-                spawnMin()
+                if(turn === 2) {
+                    map[activeMin.position.y][activeMin.position.x] = 2
+                    changeRound()
+                }
                 break;
             case 2:
                 map[activeMin.position.y][activeMin.position.x] = 3
@@ -179,9 +170,10 @@ function moveMin({keyCode}) {
     else if(keyCode === 65 || keyCode === 37) {
         switch(leftDir) {
             case 1:
+                if(turn === 1) {
                 map[activeMin.position.y][activeMin.position.x] = 2
-                activeMin.switchState()
-                spawnMin()
+                changeturn()
+            }
                 break;
             case 2:
                 map[activeMin.position.y][activeMin.position.x] = 3
@@ -204,21 +196,36 @@ function spawnMin() {
         minikin1.switchState()
         activeMin = minikin1
         drawMap(activeMin.position.color)
-        turn++
     }
     else {
         const minikin2 = new Minikin(map, 20, 8, 'purple')
         minikin2.switchState()
         activeMin = minikin2
-        drawMap(activeMin.position.color)
-        turn = 1       
+        drawMap(activeMin.position.color)      
     }
+}
+
+function changeturn() {
+    if(turn === 1){
+        turn++
+    }
+    else {
+        turn--
+    }
+    console.log("It is turn", turn)
+    
+    activeMin.switchState()
+    spawnMin()
+}
+function changeRound() {
+    round++
+    console.log("It is round", round)
+    changeturn()
+    spawnMin()
 }
 
 // Page startup
 spawnMin()
-const nest1 = new Nest(map, 0, 8, 'blue', 'brown')
-const nest2 = new Nest(map, 22, 8, 'purple', 'brown')
 
 // Event Listeners
 if(activeMin) {
