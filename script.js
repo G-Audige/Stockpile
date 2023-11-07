@@ -100,7 +100,8 @@ function drawMap(minColor) {
     uiCtx.fillRect(0,0,500,500)
     uiCtx.fillStyle = 'white'
     uiCtx.fillText(`Turn ${turn}`, 20, 30)
-    uiCtx.fillText(` Round ${round}`, 260, 30)
+    uiCtx.font = '24px Verdana'
+    uiCtx.fillText(` Round ${round}`, 250, 30)
     uiCtx.font = '16px Verdana'
     uiCtx.fillText(` Food Pips: ${activeMin.foodPips}`, 500, 80)
     }
@@ -223,9 +224,22 @@ function changeRound() {
     changeturn()
     spawnMin()
 }
+function spawnPips() {
+    for(let i = 5; i > 0; i--) {
+        let x = Math.floor(Math.random() * map.length)
+        let y = Math.floor(Math.random() * map[0].length)
+        let sprout = map[x][y]
+        console.log(sprout)
+        if(sprout === 2 || sprout === 3) {
+
+        }
+    }
+    // console.log(map[Math.floor(Math.random)])
+}
 
 // Page startup
 spawnMin()
+spawnPips()
 
 // Event Listeners
 if(activeMin) {
