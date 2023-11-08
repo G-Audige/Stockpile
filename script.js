@@ -160,6 +160,7 @@ function moveMin({keyCode}) {
             checkPips()
         }      
         if(activeMin.stamina === 0) {
+            Math.floor(activeMin.foodPips /= 2)
             if(sides.includes(2)) {
                 map[activeMin.position.y][activeMin.position.x] = 2
             }
@@ -219,6 +220,7 @@ function moveMin({keyCode}) {
             checkPips()
         }
         if(activeMin.stamina === 0) {
+            Math.floor(activeMin.foodPips /= 2)
             if(sides.includes(2)) {
                 map[activeMin.position.y][activeMin.position.x] = 2
             }
@@ -271,6 +273,7 @@ function moveMin({keyCode}) {
             checkPips()
         }
         if(activeMin.stamina === 0) {
+            Math.floor(activeMin.foodPips /= 2)
             if(sides.includes(2)) {
                 map[activeMin.position.y][activeMin.position.x] = 2
             }
@@ -329,6 +332,7 @@ function moveMin({keyCode}) {
             checkPips()
         }
         if(activeMin.stamina === 0) {
+            Math.floor(activeMin.foodPips /= 2)
             if(sides.includes(2)) {
                 map[activeMin.position.y][activeMin.position.x] = 2
             }
