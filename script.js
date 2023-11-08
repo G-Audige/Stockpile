@@ -105,7 +105,7 @@ function drawMap(minColor) {
     uiCtx.font = '24px Verdana'
     uiCtx.fillText(` Round ${round}`, 250, 30)
     uiCtx.font = '16px Verdana'
-    uiCtx.fillText(` Food Pips: ${activeMin.foodPips}`, 500, 80)
+    uiCtx.fillText(` Food Pips: ${activeMin.foodPips}`, 490, 80)
     uiCtx.fillText(` Steps Remaining: ${activeMin.stamina}`, 10, 80)
     }
 }
@@ -115,32 +115,42 @@ function moveMin({keyCode}) {
     let downDir = map[activeMin.position.y + 1][activeMin.position.x]
     let rightDir = map[activeMin.position.y][activeMin.position.x + 1]
     let leftDir = map[activeMin.position.y][activeMin.position.x - 1]
+    let sides = [upDir, downDir, rightDir, leftDir]
     // Up
     if(keyCode === 87 || keyCode === 38) {
         switch(upDir) {
             case 2:
                 map[activeMin.position.y][activeMin.position.x] = 3
                 map[activeMin.position.y - 1][activeMin.position.x] = 4
-                
                 activeMin.position.y--
                 activeMin.stamina--
                 activeMin.counter--
                 break;
             case 3:
                 map[activeMin.position.y][activeMin.position.x] = 2
-                map[activeMin.position.y - 1][activeMin.position.x] = 4
-                
+                map[activeMin.position.y - 1][activeMin.position.x] = 4      
                 activeMin.position.y--
                 activeMin.stamina-- 
                 activeMin.counter--
                 break;
             case 5:
+                if(sides.includes(2)) {
+                    map[activeMin.position.y][activeMin.position.x] = 3
+                    map[activeMin.position.y - 1][activeMin.position.x] = 4
+                }
+                else if (sides.includes(3)){
+                    map[activeMin.position.y][activeMin.position.x] = 2
+                    map[activeMin.position.y - 1][activeMin.position.x] = 4 
+                }
+                activeMin.position.y--
+                activeMin.stamina-- 
+                activeMin.counter--
                 activeMin.foodPips++
                 break;
         }
         if(activeMin.counter === 0) {
             activeMin.counter = 10
-            spawnPips()
+            checkPips()
         }      
         drawMap(activeMin.position.color) 
     }
@@ -169,12 +179,32 @@ function moveMin({keyCode}) {
 
                 break;
             case 5:
+                if(sides.includes(2)) {
+                    map[activeMin.position.y][activeMin.position.x] = 3
+                    map[activeMin.position.y][activeMin.position.x + 1] = 4
+                }
+                else if (sides.includes(3)){
+                    map[activeMin.position.y][activeMin.position.x] = 2
+                    map[activeMin.position.y][activeMin.position.x + 1] = 4
+                }
+                activeMin.position.x++
+                activeMin.stamina--
+                activeMin.counter--
                 activeMin.foodPips++
                 break;
         }
         if(activeMin.counter === 0) {
             activeMin.counter = 10
-            spawnPips()
+            checkPips()
+        }
+        if(activeMin.stamina === 0) {
+            if(sides.includes(2)) {
+                map[activeMin.position.y][activeMin.position.x] = 2
+            }
+            else if (sides.includes(3)){
+                map[activeMin.position.y][activeMin.position.x] = 3
+            }
+            changeRound()
         }
         drawMap(activeMin.position.color) 
     }
@@ -196,12 +226,23 @@ function moveMin({keyCode}) {
                 activeMin.counter--
                 break;
             case 5:
+                if(sides.includes(2)) {
+                    map[activeMin.position.y][activeMin.position.x] = 3
+                    map[activeMin.position.y + 1][activeMin.position.x] = 4
+                }
+                else if (sides.includes(3)){
+                    map[activeMin.position.y][activeMin.position.x] = 2
+                    map[activeMin.position.y + 1][activeMin.position.x] = 4
+                }
+                activeMin.position.y++
+                activeMin.stamina--
+                activeMin.counter--
                 activeMin.foodPips++
                 break;
         }
         if(activeMin.counter === 0) {
             activeMin.counter = 10
-            spawnPips()
+            checkPips()
         }
         drawMap(activeMin.position.color) 
     }
@@ -211,7 +252,7 @@ function moveMin({keyCode}) {
             case 1:
                 if(turn === 1) {
                 map[activeMin.position.y][activeMin.position.x] = 2
-                changeturn()
+                changeTurn()
             }
                 break;
             case 2:
@@ -229,17 +270,36 @@ function moveMin({keyCode}) {
                 activeMin.counter--
                 break;
             case 5:
+                if(sides.includes(2)) {
+                    map[activeMin.position.y][activeMin.position.x] = 3
+                    map[activeMin.position.y][activeMin.position.x - 1] = 4
+                }
+                else if (sides.includes(3)){
+                    map[activeMin.position.y][activeMin.position.x] = 2
+                    map[activeMin.position.y][activeMin.position.x - 1] = 4
+                }
+                activeMin.position.x--
+                activeMin.stamina--
+                activeMin.counter--
                 activeMin.foodPips++
                 break;
         }
         if(activeMin.counter === 0) {
             activeMin.counter = 10
-            spawnPips()
+            checkPips()
+        }
+        if(activeMin.stamina === 0) {
+            if(sides.includes(2)) {
+                map[activeMin.position.y][activeMin.position.x] = 2
+            }
+            else if (sides.includes(3)){
+                map[activeMin.position.y][activeMin.position.x] = 3
+            }
+            changeTurn()
         }
         drawMap(activeMin.position.color) 
     }
 }
-
 function spawnMin() {
     if(turn === 1) {
         const minikin1 = new Minikin(map, 2, 8, 'blue')
@@ -254,8 +314,7 @@ function spawnMin() {
         drawMap(activeMin.position.color)      
     }
 }
-
-function changeturn() {
+function changeTurn() {
     if(turn === 1){
         turn++
     }
@@ -270,11 +329,10 @@ function changeturn() {
 function changeRound() {
     round++
     console.log("It is round", round)
-    changeturn()
+    changeTurn()
     spawnMin()
 }
 function spawnPips() {
-    refreshMap()
     for(let i = 5; i > 0; i--) {
         let x = Math.floor(Math.random() * map.length)
         let y = Math.floor(Math.random() * map[0].length)
@@ -284,47 +342,20 @@ function spawnPips() {
             drawMap(activeMin.position.color)
         }
     }
+    checkPips()
     // console.log(map[Math.floor(Math.random)])
 }
-function refreshMap() {
-    for(let x = 0; x < freshMap.length; x++) {
-        for(let y = 0; y < freshMap[x].length; y++) {
-            const blockType = freshMap[x][y]
-            console.log(map[x][y])
-            let color = 'transparent'
-            switch(blockType) {
-                case 0:
-                    color = 'pink'
-                break;
-                case 1:
-                    color = 'brown'
-                break;
-                case 2:
-                    color = 'yellow'
-                break;
-                case 3:
-                    color = 'orange'
-                break;
-                case 4:
-                    color = activeMin.position.color
-                break;
-                case 5:
-                    color = 'red'
-                break;
-            }
-            tbCtx.fillStyle = color
-            tbCtx.fillRect(y * (blockSize + border), x * (blockSize + border), blockSize, blockSize)
+function checkPips() {
+    let pipCount = 0
+    for(let x = 0; x < map.length; x++) {
+        for(let y = 0; y < map[x].length; y++) {
+            if(map[x][y] === 5) {
+                pipCount++
+            }                      
         }
-    uiCtx.font = '20px Verdana'
-    uiCtx.fillStyle = 'black'
-    uiCtx.fillRect(0,0,700,700)
-    uiCtx.fillStyle = 'white'
-    uiCtx.fillText(`Turn ${turn}`, 20, 30)
-    uiCtx.font = '24px Verdana'
-    uiCtx.fillText(` Round ${round}`, 250, 30)
-    uiCtx.font = '16px Verdana'
-    uiCtx.fillText(` Food Pips: ${activeMin.foodPips}`, 500, 80)
-    uiCtx.fillText(` Steps Remaining: ${activeMin.stamina}`, 10, 80)
+    }
+    if(pipCount <= 3) {
+        spawnPips()
     }
 }
 
