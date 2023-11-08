@@ -5,6 +5,8 @@ let activeMin
 let turn = 1
 let rounds = 5
 let round = 1
+let nest1 = 0
+let nest2 = 0
 
 const blockSize = 25
 const border = 1
@@ -55,7 +57,7 @@ class Minikin {
         this.map[minY][minX] = 4
         this.active = false
         this.foodPips = 0
-        this.stamina = 50
+        this.stamina = 70
         this.counter = 10       
     }
     switchState() {
@@ -107,6 +109,11 @@ function drawMap(minColor) {
     uiCtx.font = '16px Verdana'
     uiCtx.fillText(` Food Pips: ${activeMin.foodPips}`, 490, 80)
     uiCtx.fillText(` Steps Remaining: ${activeMin.stamina}`, 10, 80)
+    uiCtx.fillText(`Blue's Nest Hoard`, 10, 560)
+    uiCtx.fillText(`Purple's Nest Hoard`, 450, 560)
+    uiCtx.font = '24px Verdana'
+    uiCtx.fillText(nest1, 10, 600)
+    uiCtx.fillText(nest2, 450, 600)
     }
 }
 
@@ -152,6 +159,20 @@ function moveMin({keyCode}) {
             activeMin.counter = 10
             checkPips()
         }      
+        if(activeMin.stamina === 0) {
+            if(sides.includes(2)) {
+                map[activeMin.position.y][activeMin.position.x] = 2
+            }
+            else if (sides.includes(3)){
+                map[activeMin.position.y][activeMin.position.x] = 3
+            }
+            if(turn === 2){
+                changeRound()
+            }
+            else {
+                changeTurn()
+            }
+        }
         drawMap(activeMin.position.color) 
     }
     // Right
@@ -204,7 +225,12 @@ function moveMin({keyCode}) {
             else if (sides.includes(3)){
                 map[activeMin.position.y][activeMin.position.x] = 3
             }
-            changeRound()
+            if(turn === 2){
+                changeRound()
+            }
+            else {
+                changeTurn()
+            }
         }
         drawMap(activeMin.position.color) 
     }
@@ -243,6 +269,20 @@ function moveMin({keyCode}) {
         if(activeMin.counter === 0) {
             activeMin.counter = 10
             checkPips()
+        }
+        if(activeMin.stamina === 0) {
+            if(sides.includes(2)) {
+                map[activeMin.position.y][activeMin.position.x] = 2
+            }
+            else if (sides.includes(3)){
+                map[activeMin.position.y][activeMin.position.x] = 3
+            }
+            if(turn === 2){
+                changeRound()
+            }
+            else {
+                changeTurn()
+            }
         }
         drawMap(activeMin.position.color) 
     }
@@ -295,7 +335,12 @@ function moveMin({keyCode}) {
             else if (sides.includes(3)){
                 map[activeMin.position.y][activeMin.position.x] = 3
             }
-            changeTurn()
+            if(turn === 2){
+                changeRound()
+            }
+            else {
+                changeTurn()
+            }
         }
         drawMap(activeMin.position.color) 
     }
@@ -317,18 +362,18 @@ function spawnMin() {
 function changeTurn() {
     if(turn === 1){
         turn++
+        nest1 += activeMin.foodPips
     }
     else {
+        nest2 += activeMin.foodPips
         turn--
     }
-    console.log("It is turn", turn)
     
     activeMin.switchState()
     spawnMin()
 }
 function changeRound() {
     round++
-    console.log("It is round", round)
     changeTurn()
     spawnMin()
 }
