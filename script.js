@@ -4,7 +4,7 @@ document.querySelector('title').textContent = "Top Min"
 let activeMin
 let turn = 1
 let rounds = 5
-let round = 1
+let currentRound = 1
 let nest1 = 0
 let nest2 = 0
 
@@ -60,14 +60,14 @@ class Minikin {
         this.stamina = 70
         this.counter = 10       
     }
-    switchState() {
-        if(this.active) {
-            this.active = false
-        }
-        else {
-            this.active = true
-        }
-    } 
+    // switchState() {
+    //     if(this.active) {
+    //         this.active = false
+    //     }
+    //     else {
+    //         this.active = true
+    //     }
+    // } 
 }
 
 // Functions
@@ -105,7 +105,7 @@ function drawMap(minColor) {
     uiCtx.fillStyle = 'white'
     uiCtx.fillText(`Turn ${turn}`, 20, 30)
     uiCtx.font = '24px Verdana'
-    uiCtx.fillText(` Round ${round}`, 250, 30)
+    uiCtx.fillText(` Round ${currentRound}`, 250, 30)
     uiCtx.font = '16px Verdana'
     uiCtx.fillText(` Food Pips: ${activeMin.foodPips}`, 490, 80)
     uiCtx.fillText(` Steps Remaining: ${activeMin.stamina}`, 10, 80)
@@ -116,7 +116,6 @@ function drawMap(minColor) {
     uiCtx.fillText(nest2, 450, 600)
     }
 }
-
 function moveMin({keyCode}) {
     let upDir = map[activeMin.position.y - 1][activeMin.position.x]
     let downDir = map[activeMin.position.y + 1][activeMin.position.x]
@@ -174,6 +173,7 @@ function moveMin({keyCode}) {
                 changeTurn()
             }
         }
+        // checkPips()
         drawMap(activeMin.position.color) 
     }
     // Right
@@ -234,6 +234,7 @@ function moveMin({keyCode}) {
                 changeTurn()
             }
         }
+        // checkPips()
         drawMap(activeMin.position.color) 
     }
     // Down
@@ -287,6 +288,7 @@ function moveMin({keyCode}) {
                 changeTurn()
             }
         }
+        // checkPips()
         drawMap(activeMin.position.color) 
     }
     // Left
@@ -346,22 +348,23 @@ function moveMin({keyCode}) {
                 changeTurn()
             }
         }
+        // checkPips()
         drawMap(activeMin.position.color) 
     }
 }
 function spawnMin() {
     if(turn === 1) {
         const minikin1 = new Minikin(map, 2, 8, 'blue')
-        minikin1.switchState()
+        // minikin1.switchState()
         activeMin = minikin1
-        drawMap(activeMin.position.color)
+        // drawMap(activeMin.position.color)
     }
     else {
         const minikin2 = new Minikin(map, 20, 8, 'purple')
-        minikin2.switchState()
-        activeMin = minikin2
-        drawMap(activeMin.position.color)      
+        // minikin2.switchState()
+        activeMin = minikin2          
     }
+    drawMap(activeMin.position.color)
 }
 function changeTurn() {
     if(turn === 1){
@@ -371,15 +374,20 @@ function changeTurn() {
     else {
         nest2 += activeMin.foodPips
         turn--
-    }
-    
-    activeMin.switchState()
+    }   
+    // activeMin.switchState()
     spawnMin()
 }
 function changeRound() {
-    round++
-    changeTurn()
-    spawnMin()
+    if(currentRound < 5){
+        currentRound++
+        changeTurn()
+        spawnMin()
+    }
+    else if(currentRound = 5) {
+        changeTurn()
+        gameOver()
+    }   
 }
 function spawnPips() {
     for(let i = 5; i > 0; i--) {
@@ -407,12 +415,13 @@ function checkPips() {
         spawnPips()
     }
 }
+function gameOver() {
+    activeMin = null
+}
 
 // Page startup
 spawnMin()
 spawnPips()
 
 // Event Listeners
-if(activeMin) {
 document.addEventListener('keydown', moveMin)
-}
