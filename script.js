@@ -22,7 +22,7 @@ const uiCtx = ui.getContext('2d')
     // 3 = Tile 2 (Orange)
     // 4 = Min 1/Min 2 (Blue/Purple)
     // 5 = Food pip (Red)
-const map = [
+let map = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,0],
     [0,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,0],
@@ -41,6 +41,7 @@ const map = [
     [0,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ]
+let freshMap = map 
 
 // Classes and objects
 class Minikin {
@@ -54,7 +55,8 @@ class Minikin {
         this.map[minY][minX] = 4
         this.active = false
         this.foodPips = 0
-        this.storage = []        
+        this.stamina = 50
+        this.counter = 10       
     }
     switchState() {
         if(this.active) {
@@ -97,13 +99,14 @@ function drawMap(minColor) {
         }
     uiCtx.font = '20px Verdana'
     uiCtx.fillStyle = 'black'
-    uiCtx.fillRect(0,0,500,500)
+    uiCtx.fillRect(0,0,700,700)
     uiCtx.fillStyle = 'white'
     uiCtx.fillText(`Turn ${turn}`, 20, 30)
     uiCtx.font = '24px Verdana'
     uiCtx.fillText(` Round ${round}`, 250, 30)
     uiCtx.font = '16px Verdana'
     uiCtx.fillText(` Food Pips: ${activeMin.foodPips}`, 500, 80)
+    uiCtx.fillText(` Steps Remaining: ${activeMin.stamina}`, 10, 80)
     }
 }
 
@@ -118,14 +121,27 @@ function moveMin({keyCode}) {
             case 2:
                 map[activeMin.position.y][activeMin.position.x] = 3
                 map[activeMin.position.y - 1][activeMin.position.x] = 4
+                
                 activeMin.position.y--
-            break;
+                activeMin.stamina--
+                activeMin.counter--
+                break;
             case 3:
                 map[activeMin.position.y][activeMin.position.x] = 2
                 map[activeMin.position.y - 1][activeMin.position.x] = 4
-                activeMin.position.y-- 
-            break;
+                
+                activeMin.position.y--
+                activeMin.stamina-- 
+                activeMin.counter--
+                break;
+            case 5:
+                activeMin.foodPips++
+                break;
         }
+        if(activeMin.counter === 0) {
+            activeMin.counter = 10
+            spawnPips()
+        }      
         drawMap(activeMin.position.color) 
     }
     // Right
@@ -141,13 +157,24 @@ function moveMin({keyCode}) {
                 map[activeMin.position.y][activeMin.position.x] = 3
                 map[activeMin.position.y][activeMin.position.x + 1] = 4
                 activeMin.position.x++
+                activeMin.stamina--
+                activeMin.counter--
                 break;
             case 3:
                 map[activeMin.position.y][activeMin.position.x] = 2
                 map[activeMin.position.y][activeMin.position.x + 1] = 4
                 activeMin.position.x++
+                activeMin.stamina--
+                activeMin.counter--
+
                 break;
-            
+            case 5:
+                activeMin.foodPips++
+                break;
+        }
+        if(activeMin.counter === 0) {
+            activeMin.counter = 10
+            spawnPips()
         }
         drawMap(activeMin.position.color) 
     }
@@ -158,12 +185,23 @@ function moveMin({keyCode}) {
                 map[activeMin.position.y][activeMin.position.x] = 3
                 map[activeMin.position.y + 1][activeMin.position.x] = 4
                 activeMin.position.y++
+                activeMin.stamina--
+                activeMin.counter--
                 break;
             case 3:
                 map[activeMin.position.y][activeMin.position.x] = 2
                 map[activeMin.position.y + 1][activeMin.position.x] = 4
                 activeMin.position.y++
+                activeMin.stamina--
+                activeMin.counter--
                 break;
+            case 5:
+                activeMin.foodPips++
+                break;
+        }
+        if(activeMin.counter === 0) {
+            activeMin.counter = 10
+            spawnPips()
         }
         drawMap(activeMin.position.color) 
     }
@@ -180,12 +218,23 @@ function moveMin({keyCode}) {
                 map[activeMin.position.y][activeMin.position.x] = 3
                 map[activeMin.position.y][activeMin.position.x - 1] = 4
                 activeMin.position.x--
+                activeMin.stamina--
+                activeMin.counter--
                 break;
             case 3:
                 map[activeMin.position.y][activeMin.position.x] = 2
                 map[activeMin.position.y][activeMin.position.x - 1] = 4
                 activeMin.position.x--
+                activeMin.stamina--
+                activeMin.counter--
                 break;
+            case 5:
+                activeMin.foodPips++
+                break;
+        }
+        if(activeMin.counter === 0) {
+            activeMin.counter = 10
+            spawnPips()
         }
         drawMap(activeMin.position.color) 
     }
@@ -225,16 +274,58 @@ function changeRound() {
     spawnMin()
 }
 function spawnPips() {
+    refreshMap()
     for(let i = 5; i > 0; i--) {
         let x = Math.floor(Math.random() * map.length)
         let y = Math.floor(Math.random() * map[0].length)
         let sprout = map[x][y]
-        console.log(sprout)
         if(sprout === 2 || sprout === 3) {
-
+            map[x][y] = 5
+            drawMap(activeMin.position.color)
         }
     }
     // console.log(map[Math.floor(Math.random)])
+}
+function refreshMap() {
+    for(let x = 0; x < freshMap.length; x++) {
+        for(let y = 0; y < freshMap[x].length; y++) {
+            const blockType = freshMap[x][y]
+            console.log(map[x][y])
+            let color = 'transparent'
+            switch(blockType) {
+                case 0:
+                    color = 'pink'
+                break;
+                case 1:
+                    color = 'brown'
+                break;
+                case 2:
+                    color = 'yellow'
+                break;
+                case 3:
+                    color = 'orange'
+                break;
+                case 4:
+                    color = activeMin.position.color
+                break;
+                case 5:
+                    color = 'red'
+                break;
+            }
+            tbCtx.fillStyle = color
+            tbCtx.fillRect(y * (blockSize + border), x * (blockSize + border), blockSize, blockSize)
+        }
+    uiCtx.font = '20px Verdana'
+    uiCtx.fillStyle = 'black'
+    uiCtx.fillRect(0,0,700,700)
+    uiCtx.fillStyle = 'white'
+    uiCtx.fillText(`Turn ${turn}`, 20, 30)
+    uiCtx.font = '24px Verdana'
+    uiCtx.fillText(` Round ${round}`, 250, 30)
+    uiCtx.font = '16px Verdana'
+    uiCtx.fillText(` Food Pips: ${activeMin.foodPips}`, 500, 80)
+    uiCtx.fillText(` Steps Remaining: ${activeMin.stamina}`, 10, 80)
+    }
 }
 
 // Page startup
