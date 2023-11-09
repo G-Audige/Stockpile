@@ -9,7 +9,6 @@ let round = 1
 let nest1 = 0
 let nest2 = 0
 
-
 let tiles = document.querySelectorAll('.tile')
 let displayTurn = document.querySelector('#turn')
 let displayRound = document.querySelector('#round')
@@ -108,6 +107,25 @@ function checkPips() {
     }
     if(pipCount <= 3) {
         spawnPips()
+    }
+}
+function clearPips() {
+    let up = map[activeMin.position.y - 1][activeMin.position.x].textContent
+    let down = map[activeMin.position.y + 1][activeMin.position.x].textContent
+    let right = map[activeMin.position.y][activeMin.position.x + 1].textContent
+    let left = map[activeMin.position.y][activeMin.position.x - 1].textContent
+    let sides = [up, down, right, left]
+    for(let x = 0; x < map.length; x++) {
+        for(let y = 0; y < map[x].length; y++) {
+            if(map[x][y].textContent == 5) {
+                if(sides.includes('2')) {
+                    map[x][y].textContent = 3
+                }
+                else if (sides.includes('3')){
+                    map[x][y].textContent = 2 
+                }
+            }                      
+        }
     }
 }
 function depositPips() {
@@ -273,6 +291,17 @@ function moveMin({keyCode}) {
             changeTurn()
         }
     }
+}
+function resetGame() {
+    turn = 1
+    round = 1
+    nest1 = 0
+    nest2 = 0
+    clearPips()
+    showStartScreen()
+}
+function showStartScreen() {
+    startScreen.style.display = 'inline'
 }
 function spawnMin() {
     if(turn === 1) {
