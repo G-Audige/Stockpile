@@ -26,6 +26,9 @@ h1 {
 div {
     margin: auto;
 }
+p {
+    color: white;
+}
 
 
 /* Classes */
@@ -55,19 +58,24 @@ div {
     right: 0
 }
 #round {
-    color: white;
     font-size: 20px;
     position: absolute;
 
     top: -2%;
     left: 43%;
 }
+#steps {
+    position: absolute;
+    
+    top: 9%;
+    left: 2%
+}
 #turn {
     border: solid black;
-    color: white;
     position: absolute;
 
-    top: 5%
+    top: -1%;
+    left: 2%
 }
 #ui {
     background-color: black;
