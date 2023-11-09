@@ -309,6 +309,7 @@ function showStartScreen() {
     startScreen.style.display = 'inline'
 }
 function showTransitionScreen() {
+    activeMin = null 
     gameScreen.style.display = 'none'
     tally.textContent = `The score is ${nest1} to ${nest2}.`
     transitionScreen.style.display = 'inline'
