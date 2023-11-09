@@ -169,11 +169,11 @@ function moveMin({keyCode}) {
 
                 break;
             case '5':
-                if(sides.includes(2)) {
+                if(sides.includes('2')) {
                     map[activeMin.position.y][activeMin.position.x].textContent = 3
                     map[activeMin.position.y][activeMin.position.x + 1].textContent = 4
                 }
-                else if (sides.includes(3)){
+                else if (sides.includes('3')){
                     map[activeMin.position.y][activeMin.position.x].textContent = 2
                     map[activeMin.position.y][activeMin.position.x + 1].textContent = 4
                 }
@@ -203,11 +203,11 @@ function moveMin({keyCode}) {
                 activeMin.counter--
                 break;
             case '5':
-                if(sides.includes(2)) {
+                if(sides.includes('2')) {
                     map[activeMin.position.y][activeMin.position.x].textContent = 3
                     map[activeMin.position.y + 1][activeMin.position.x].textContent = 4
                 }
-                else if (sides.includes(3)){
+                else if (sides.includes('3')){
                     map[activeMin.position.y][activeMin.position.x].textContent = 2
                     map[activeMin.position.y + 1][activeMin.position.x].textContent = 4
                 }
@@ -243,11 +243,11 @@ function moveMin({keyCode}) {
                 activeMin.counter--
                 break;
             case '5':
-                if(sides.includes(2)) {
+                if(sides.includes('2')) {
                     map[activeMin.position.y][activeMin.position.x].textContent = 3
                     map[activeMin.position.y][activeMin.position.x - 1].textContent = 4
                 }
-                else if (sides.includes(3)){
+                else if (sides.includes('3')){
                     map[activeMin.position.y][activeMin.position.x].textContent = 2
                     map[activeMin.position.y][activeMin.position.x - 1].textContent = 4
                 }
@@ -275,8 +275,8 @@ function spawnPips() {
     for(let i = 5; i > 0; i--) {
         let x = Math.floor(Math.random() * map.length)
         let y = Math.floor(Math.random() * map[0].length)
-        let sprout = map[x][y]
-        if(sprout === 2 || sprout === 3) {
+        let sprout = map[x][y].textContent
+        if(sprout == 2 || sprout == 3) {            
             map[x][y].textContent = 5
             drawBoard(activeMin.position.color)
         }
