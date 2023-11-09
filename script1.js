@@ -271,10 +271,21 @@ function spawnMin() {
     }
     drawBoard(activeMin.position.color)
 }
+function spawnPips() {
+    for(let i = 5; i > 0; i--) {
+        let x = Math.floor(Math.random() * map.length)
+        let y = Math.floor(Math.random() * map[0].length)
+        let sprout = map[x][y]
+        if(sprout === 2 || sprout === 3) {
+            map[x][y].textContent = 5
+            drawBoard(activeMin.position.color)
+        }
+    }
+}
 
 // Page setup
 spawnMin()
-drawBoard()
+spawnPips()
 
 // Event Listeners
 document.addEventListener('keydown', moveMin)
