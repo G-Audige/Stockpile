@@ -239,6 +239,21 @@ function moveMin({keyCode}) {
         activeMin.counter = 10
         checkPips()
     }
+    if(activeMin.stamina === 0) {
+        Math.floor(activeMin.foodPipsHeld /= 2)
+        if(sides.includes('2')) {
+            map[activeMin.position.y][activeMin.position.x].textContent = 2
+        }
+        else if (sides.includes('3')){
+            map[activeMin.position.y][activeMin.position.x].textContent = 3
+        }
+        if(turn === 2){
+            changeRound()
+        }
+        else {
+            changeTurn()
+        }
+    }
 }
 function spawnMin() {
     if(turn === 1) {
