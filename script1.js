@@ -44,7 +44,7 @@ let map = [
 class Minikin {
     constructor(map, minX, minY, minColor) {
         this.map = map
-        this.map[minX][minY]
+        this.map[minY][minX].textContent = 4
         this.foodPipsHeld = 0
         this.stamina = 70
         this.counter = 10
@@ -54,12 +54,9 @@ class Minikin {
             color: minColor
         }
     }
-    test() {
-        return this.map[minX][minY].textContent
-    }
 }
 // Functions
-function drawBoard() {
+function drawBoard(minColor) {
     tiles.forEach( tile => {
         if(tile.textContent == 0) {
             tile.style.backgroundColor = 'pink'
@@ -81,6 +78,150 @@ function drawBoard() {
         }
     })
 }
+function moveMin({keyCode}) {
+    let up = map[activeMin.position.y - 1][activeMin.position.x].textContent
+    let down = map[activeMin.position.y + 1][activeMin.position.x].textContent
+    let right = map[activeMin.position.y][activeMin.position.x - 1].textContent
+    let left = map[activeMin.position.y][activeMin.position.x + 1].textContent
+    let sides = [up, down, right, left]
+    // Up
+    if(keyCode === 87 || keyCode === 38) {
+        switch(up) {
+            case '2':
+                map[activeMin.position.y][activeMin.position.x].textContent = 3
+                map[activeMin.position.y - 1][activeMin.position.x].textContent = 4
+                activeMin.position.y--
+                activeMin.stamina--
+                activeMin.counter--
+                break;
+            case '3':
+                map[activeMin.position.y][activeMin.position.x].textContent = 2
+                map[activeMin.position.y - 1][activeMin.position.x].textContent = 4                   
+                activeMin.position.y--
+                activeMin.stamina-- 
+                activeMin.counter--
+                break;
+            case '5':
+                if(sides.includes('2')) {
+                    map[activeMin.position.y][activeMin.position.x].textContent = 3
+                    map[activeMin.position.y - 1][activeMin.position.x].textContent = 4
+                }
+                else if (sides.includes('3')){
+                    map[activeMin.position.y][activeMin.position.x].textContent = 2
+                    map[activeMin.position.y - 1][activeMin.position.x].textContent = 4 
+                }
+                activeMin.position.y--
+                activeMin.stamina-- 
+                activeMin.counter--
+                activeMin.foodPips++
+                break;
+        }
+        drawBoard(activeMin.position.color) 
+    }   
+    // Right
+    else if(keyCode === 68 || keyCode === 39) {
+        switch(right) {
+            case '2':
+                map[activeMin.position.y][activeMin.position.x].textContent = 3
+                map[activeMin.position.y][activeMin.position.x + 1].textContent = 4
+                activeMin.position.x++
+                activeMin.stamina--
+                activeMin.counter--
+                break;
+            case '3':
+                map[activeMin.position.y][activeMin.position.x].textContent = 2
+                map[activeMin.position.y][activeMin.position.x + 1].textContent = 4
+                activeMin.position.x++
+                activeMin.stamina--
+                activeMin.counter--
+
+                break;
+            case '5':
+                if(sides.includes(2)) {
+                    map[activeMin.position.y][activeMin.position.x].textContent = 3
+                    map[activeMin.position.y][activeMin.position.x + 1].textContent = 4
+                }
+                else if (sides.includes(3)){
+                    map[activeMin.position.y][activeMin.position.x].textContent = 2
+                    map[activeMin.position.y][activeMin.position.x + 1].textContent = 4
+                }
+                activeMin.position.x++
+                activeMin.stamina--
+                activeMin.counter--
+                activeMin.foodPips++
+                break;
+        }
+        drawBoard(activeMin.position.color)
+    }
+    // Down
+    else if(keyCode === 83 || keyCode === 40) {
+        switch(down) {
+            case '2':
+                map[activeMin.position.y][activeMin.position.x].textContent = 3
+                map[activeMin.position.y + 1][activeMin.position.x].textContent = 4
+                activeMin.position.y++
+                activeMin.stamina--
+                activeMin.counter--
+                break;
+            case '3':
+                map[activeMin.position.y][activeMin.position.x].textContent = 2
+                map[activeMin.position.y + 1][activeMin.position.x].textContent = 4
+                activeMin.position.y++
+                activeMin.stamina--
+                activeMin.counter--
+                break;
+            case '5':
+                if(sides.includes(2)) {
+                    map[activeMin.position.y][activeMin.position.x].textContent = 3
+                    map[activeMin.position.y + 1][activeMin.position.x].textContent = 4
+                }
+                else if (sides.includes(3)){
+                    map[activeMin.position.y][activeMin.position.x].textContent = 2
+                    map[activeMin.position.y + 1][activeMin.position.x].textContent = 4
+                }
+                activeMin.position.y++
+                activeMin.stamina--
+                activeMin.counter--
+                activeMin.foodPips++
+                break;
+        }
+        drawBoard(activeMin.position.color)
+    }
+    // Left
+    else if(keyCode === 65 || keyCode === 37) {
+        switch(left) {
+            case '2':
+                map[activeMin.position.y][activeMin.position.x].textContent = 3
+                map[activeMin.position.y][activeMin.position.x - 1].textContent = 4
+                activeMin.position.x--
+                activeMin.stamina--
+                activeMin.counter--
+                break;
+            case '3':
+                map[activeMin.position.y][activeMin.position.x].textContent = 2
+                map[activeMin.position.y][activeMin.position.x - 1].textContent = 4
+                activeMin.position.x--
+                activeMin.stamina--
+                activeMin.counter--
+                break;
+            case '5':
+                if(sides.includes(2)) {
+                    map[activeMin.position.y][activeMin.position.x].textContent = 3
+                    map[activeMin.position.y][activeMin.position.x - 1].textContent = 4
+                }
+                else if (sides.includes(3)){
+                    map[activeMin.position.y][activeMin.position.x].textContent = 2
+                    map[activeMin.position.y][activeMin.position.x - 1].textContent = 4
+                }
+                activeMin.position.x--
+                activeMin.stamina--
+                activeMin.counter--
+                activeMin.foodPips++
+                break;
+        }
+        drawBoard(activeMin.position.color)
+    }
+}
 function spawnMin() {
     if(turn === 1) {
         const min1 = new Minikin(map, 2, 8, 'blue')
@@ -88,11 +229,15 @@ function spawnMin() {
     }
     else {
         const min2 = new Minikin(map, 20, 8, 'purple')
+        activeMin = min2
     }
-    console.log(activeMin.test)
+    console.log(map[activeMin.position.y][activeMin.position.x].textContent)
     drawBoard(activeMin.position.color)
 }
 
 // Page setup
 spawnMin()
 drawBoard()
+
+// Event Listeners
+document.addEventListener('keydown', moveMin)
