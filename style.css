@@ -49,7 +49,7 @@ p {
     background-color: black;
     border: solid black;
     display: none;
-    height: 650px;
+    height: 600px;
     position: absolute;
     width: 600px;
 
@@ -62,34 +62,34 @@ p {
     font-size: 20px;
     position: absolute;
 
-    top: 83%;
+    top: 84%;
     left: 2%
 }
 #nest1 {
     font-size: 18px;
     position: absolute;
 
-    top: 88%;
+    top: 89%;
     left: 2%
 }
 #nest2-label {
     font-size: 20px;
     position: absolute;
 
-    top: 83%;
+    top: 84%;
     left: 71%
 }
 #nest2 {
     font-size: 18px;
     position: absolute;
 
-    top: 88%;
+    top: 89%;
     left: 71%
 }
 #pips {
     position: absolute;
     
-    top: 10%;
+    top: 7%;
     left: 83%
 }
 #round {
@@ -103,7 +103,7 @@ p {
     background-color: black;
     border: solid black;
     display: none;
-    height: 650px;
+    height: 600px;
     position: absolute;
     width: 600px;
 
@@ -116,7 +116,7 @@ p {
     background-color: black;
     border: solid black;
     display: inline;
-    height: 650px;
+    height: 600px;
     position: absolute;
     width: 600px;
 
@@ -128,7 +128,7 @@ p {
 #steps {
     position: absolute;
     
-    top: 10%;
+    top: 7%;
     left: 2%
 }
 #turn {
@@ -141,7 +141,7 @@ p {
 #ui {
     background-color: black;
     border: solid black;
-    height: 650px;
+    height: 600px;
     position: absolute;
     width: 600px;
 
