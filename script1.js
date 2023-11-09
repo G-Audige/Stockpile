@@ -17,6 +17,10 @@ let displaySteps = document.querySelector('#steps')
 let displayPips = document.querySelector('#pips')
 let displayHoard1 = document.querySelector('#nest1')
 let displayHoard2 = document.querySelector('#nest2')
+let gameScreen = document.querySelector('#board')
+let startScreen = document.querySelector('#start-game')
+let transitionScreen = document.querySelector('#round-transition')
+let endScreen = document.querySelector('#end-game')
 
 let row1 = document.querySelector('#row1').children
 let row2 = document.querySelector('#row2').children
@@ -293,8 +297,14 @@ function spawnPips() {
     }
     checkPips()
 }
+function startGame() {
+    startScreen.style.display = 'none'
+    gameScreen.style.display = 'inline'
+    spawnMin()
+    spawnPips()
+}
 function transitionRound() {
-    
+
 }
 function updateDisplay() {
     displayTurn.textContent = `Turn: ${turn}`
@@ -306,8 +316,7 @@ function updateDisplay() {
 }
 
 // Page setup
-spawnMin()
-spawnPips()
+
 
 // Event Listeners
 document.addEventListener('keydown', moveMin)

@@ -1,8 +1,6 @@
 /* Tags */
 body {
     background-color: #CCCCFF;
-    /* display: flex;
-    flex-direction: column; */
     text-align: center;
 }
 h1 {
@@ -12,17 +10,6 @@ h1 {
     top: -10%;
     left: 40%;
 }
-/* canvas {
-    box-shadow: black 20px 10px 50px;
-    border: 1px solid silver;
-    margin: auto;
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-} */
 div {
     margin: auto;
 }
@@ -48,6 +35,7 @@ p {
 #board {
     background-color: gray;
     border: 2px solid gray;
+    display: none;
     height: 434px;
     width: 575px;
     position: absolute;
@@ -127,7 +115,7 @@ p {
 #start-game {
     background-color: black;
     border: solid black;
-    display: none;
+    display: inline-block;
     height: 650px;
     position: absolute;
     width: 600px;

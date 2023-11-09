@@ -22,11 +22,14 @@
         <p id="pips">Food Pips:</p>
         <p id="nest1-label">Blue's Nest Hoard</p>
         <p id="nest2-label">Purple's Nest Hoard</p>
-        <p id="nest1">Nest 1</p>
-        <p id="nest2">Nest 2</p>
-        
+        <p id="nest1">0</p>
+        <p id="nest2">0</p>
+        <div id="start-game">
+            <p>In this game, two minikins are competing against each other to store as much food pips as they can before winter comes. One minikin only comes out in the morning while the other only comes out in the afternoon. Each day, new food pips appear on the field and the minikins only have a limited amount of time to locate them and bring them to their nest. The minikin who either fills its nest first or has the most food stored once winter comes is declared the top min.</p>
+            <button onclick=startGame()>Start Game</button>
+        </div>
         <div id="round-transition"></div>
-        <div id="end-game">a</div>
+        <div id="end-game"></div>
         <div id="board">
 
             <div class="row" id="row1">
@@ -454,8 +457,7 @@
                 <div class="tile">0</div>
                 <div class="tile">0</div>
             </div>
-        </div>
-        <div id="start-game"></div>
+        </div>      
     </div>
 </body>
 </html>
