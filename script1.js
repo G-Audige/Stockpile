@@ -15,6 +15,8 @@ let displayTurn = document.querySelector('#turn')
 let displayRound = document.querySelector('#round')
 let displaySteps = document.querySelector('#steps')
 let displayPips = document.querySelector('#pips')
+let displayHoard1 = document.querySelector('#nest1')
+let displayHoard2 = document.querySelector('#nest2')
 
 let row1 = document.querySelector('#row1').children
 let row2 = document.querySelector('#row2').children
@@ -73,9 +75,11 @@ class Minikin {
 function changeTurn() {
     if(turn === 1) {
         turn++
+        nest1 += activeMin.foodPipsHeld
     }
     else {
         turn--
+        nest2 += activeMin.foodPipsHeld
     }
     spawnMin()
     
@@ -144,6 +148,7 @@ function moveMin({keyCode}) {
                 activeMin.position.y--
                 activeMin.stamina-- 
                 activeMin.counter--
+                if(up == 5)
                 activeMin.foodPipsHeld++
                 break;
         }
@@ -172,6 +177,7 @@ function moveMin({keyCode}) {
                 activeMin.position.x++
                 activeMin.stamina--
                 activeMin.counter--
+                if(right == 5)
                 activeMin.foodPipsHeld++
                 break;
         }
@@ -194,6 +200,7 @@ function moveMin({keyCode}) {
                 activeMin.position.y++
                 activeMin.stamina--
                 activeMin.counter--
+                if(down == 5)
                 activeMin.foodPipsHeld++
                 break;
         }
@@ -222,6 +229,7 @@ function moveMin({keyCode}) {
                 activeMin.position.x--
                 activeMin.stamina--
                 activeMin.counter--
+                if(left == 5)
                 activeMin.foodPipsHeld++
                 break;
         }
@@ -260,6 +268,8 @@ function updateDisplay() {
     displayRound.textContent = `Round: ${round}`
     displaySteps.textContent = `Steps Remaining: ${activeMin.stamina}`
     displayPips.textContent = `Food Pips: ${activeMin.foodPipsHeld}`
+    displayHoard1.textContent = nest1
+    displayHoard2.textContent = nest2
 }
 
 // Page setup

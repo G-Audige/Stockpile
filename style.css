@@ -64,11 +64,25 @@ p {
     top: 83%;
     left: 2%
 }
+#nest1 {
+    font-size: 18px;
+    position: absolute;
+
+    top: 88%;
+    left: 2%
+}
 #nest2-label {
     font-size: 20px;
     position: absolute;
 
     top: 83%;
+    left: 71%
+}
+#nest2 {
+    font-size: 18px;
+    position: absolute;
+
+    top: 88%;
     left: 71%
 }
 #pips {
