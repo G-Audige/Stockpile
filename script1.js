@@ -110,20 +110,20 @@ function checkPips() {
         spawnPips()
     }
 }
-function clearPips() {
-    let up = map[activeMin.position.y - 1][activeMin.position.x].textContent
-    let down = map[activeMin.position.y + 1][activeMin.position.x].textContent
-    let right = map[activeMin.position.y][activeMin.position.x + 1].textContent
-    let left = map[activeMin.position.y][activeMin.position.x - 1].textContent
-    let sides = [up, down, right, left]
+function clearPips() {   
     for(let x = 0; x < map.length; x++) {
         for(let y = 0; y < map[x].length; y++) {
-            if(map[x][y].textContent == 5) {
+            let up = map[y - 1][x].textContent
+            let down = map[y + 1][x].textContent
+            let right = map[y][x + 1].textContent
+            let left = map[y][x - 1].textContent
+            let sides = [up, down, right, left]
+            if(map[y][x].textContent == 5) {
                 if(sides.includes('2')) {
-                    map[x][y].textContent = 3
+                    map[y][x].textContent = 3
                 }
                 else if (sides.includes('3')){
-                    map[x][y].textContent = 2 
+                    map[y][x].textContent = 2 
                 }
             }                      
         }
@@ -162,6 +162,7 @@ function drawBoard(minColor) {
 }
 function endGame() {
     activeMin = null
+    showEndScreen()
 }
 function moveMin({keyCode}) {
     let up = map[activeMin.position.y - 1][activeMin.position.x].textContent
@@ -299,10 +300,20 @@ function resetGame() {
     nest1 = 0
     nest2 = 0
     clearPips()
+    endScreen.style.display = 'none'
     showStartScreen()
+}
+function showEndScreen() {
+    gameScreen.style.display = 'none'
+    endScreen.style.display = 'inline'
 }
 function showStartScreen() {
     startScreen.style.display = 'inline'
+}
+function showTransitionScreen() {
+    gameScreen.style.display = 'none'
+    tally.textContent = `The score is ${nest1} to ${nest2}.`
+    transitionScreen.style.display = 'inline'
 }
 function spawnMin() {
     if(turn === 1) {
@@ -339,11 +350,7 @@ function transitionRound() {
     changeTurn()
     spawnMin()
 }
-function showTransitionScreen() {
-    gameScreen.style.display = 'none'
-    tally.textContent = `The score is ${nest1} to ${nest2}.`
-    transitionScreen.style.display = 'inline'
-}
+
 function updateDisplay() {
     displayTurn.textContent = `Turn: ${turn}`
     displayRound.textContent = `Round: ${round}`
