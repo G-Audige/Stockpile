@@ -1,9 +1,15 @@
 /* Tags */
 body {
     background-color: #CCCCFF;
+    /* display: flex;
+    flex-direction: column; */
+    text-align: center;
 }
-canvas {
-    /* box-shadow: black 20px 10px 50px; */
+h1 {
+    border: solid black;
+}
+/* canvas {
+    box-shadow: black 20px 10px 50px;
     border: 1px solid silver;
     margin: auto;
     position: absolute;
@@ -12,10 +18,51 @@ canvas {
     left: 0;
     bottom: 0;
     right: 0;
+} */
+div {
+    margin: auto;
+}
+
+/* Classes */
+.row {
+    display: flex;
+    height: 25.5px;
+    width: 574px
+}
+.tile {
+    border: 0.5px solid gray;
+    color: transparent;
+    height: 25px;
+    width: 25px
 }
 
 /* Ids */
+#board {
+    background-color: gray;
+    border: 2px solid gray;
+    height: 434px;
+    width: 575px;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0
+}
 #ui {
+    background-color: black;
+    border: solid black;
+    color: white;
+    height: 620px;
+    position: absolute;
+    width: 600px;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0
+}
+/* #ui {
     background-color: black;
 }
 #tile-borders {
@@ -23,4 +70,4 @@ canvas {
 }
 #board {
     background-color: transparent;
-}
+} */

@@ -5,11 +5,444 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="script1.js" defer></script>
 </head>
 <body>
-    <canvas id="ui" width = "620" height = "620"></canvas>
+    <!-- <canvas id="ui" width = "620" height = "620"></canvas>
     <canvas id="tile-borders" width = "598" height = "442" ></canvas>
-    <canvas id = "board" width = "596" height = "440"></canvas>
+    <canvas id = "board" width = "596" height = "440"></canvas> -->
+    <div>
+            
+    </div>    
+    <div id="ui">
+        <h1>Stockpile</h1>
+        <div id="board">
+            <div class="row" id="row1">
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row2">
+                <div class="tile">0</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row3">
+                <div class="tile">0</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row4">
+                <div class="tile">0</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row5">
+                <div class="tile">0</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row6">
+                <div class="tile">0</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row7">
+                <div class="tile">0</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row8">
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row9">
+                <div class="tile">1</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">1</div>
+            </div>
+            <div class="row" id="row10">
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row11">
+                <div class="tile">0</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row12">
+                <div class="tile">0</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row13">
+                <div class="tile">0</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row14">
+                <div class="tile">0</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row15">
+                <div class="tile">0</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row16">
+                <div class="tile">0</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">0</div>
+            </div>
+            <div class="row" id="row17">
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+                <div class="tile">0</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

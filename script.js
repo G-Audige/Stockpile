@@ -1,6 +1,7 @@
 document.querySelector('title').textContent = "Top Min"
 
 // Declarations
+
 let activeMin
 let turn = 1
 let rounds = 5
@@ -55,7 +56,7 @@ class Minikin {
             color: minColor
         }
         this.map[minY][minX] = 4
-        this.active = false
+        // this.active = false
         this.foodPips = 0
         this.stamina = 70
         this.counter = 10       
