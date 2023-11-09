@@ -77,8 +77,8 @@ class Minikin {
 
 // Functions
 function changeTurn() {
-    depositPips()
     if(turn === 1) {
+        depositPips()
         turn++       
     }
     else {
