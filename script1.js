@@ -111,23 +111,10 @@ function checkPips() {
     }
 }
 function clearPips() {   
-    for(let x = 0; x < map.length; x++) {
-        for(let y = 0; y < map[x].length; y++) {
-            let up = map[y - 1][x].textContent
-            let down = map[y + 1][x].textContent
-            let right = map[y][x + 1].textContent
-            let left = map[y][x - 1].textContent
-            let sides = [up, down, right, left]
-            if(map[y][x].textContent == 5) {
-                if(sides.includes('2')) {
-                    map[y][x].textContent = 3
-                }
-                else if (sides.includes('3')){
-                    map[y][x].textContent = 2 
-                }
-            }                      
-        }
-    }
+    tiles.forEach( tile => {
+        tile.textContent = tile.innerHTML
+    })
+
 }
 function depositPips() {
     if(turn === 1) {
@@ -350,7 +337,6 @@ function transitionRound() {
     changeTurn()
     spawnMin()
 }
-
 function updateDisplay() {
     displayTurn.textContent = `Turn: ${turn}`
     displayRound.textContent = `Round: ${round}`
