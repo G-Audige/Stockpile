@@ -2,8 +2,10 @@ document.querySelector('title').textContent = "Top Min"
 
 // Declarations
 let turn = 1
+let round = 1
 let tiles = document.querySelectorAll('.tile')
 let displayTurn = document.querySelector('#turn')
+let displayRound = document.querySelector('#round')
 let row1 = document.querySelector('#row1').children
 let row2 = document.querySelector('#row2').children
 let row3 = document.querySelector('#row3').children
@@ -60,6 +62,7 @@ class Minikin {
 // Functions
 function changeDisplay() {
     displayTurn.textContent = `Turn: ${turn}`
+    displayRound.textContent = `Round: ${round}`
 }
 function changeTurn() {
     if(turn === 1) {
@@ -70,6 +73,11 @@ function changeTurn() {
     }
     spawnMin()
     
+}
+function changeRound() {
+    round++
+    changeTurn()
+    spawnMin()
 }
 function drawBoard(minColor) {
     tiles.forEach( tile => {
@@ -140,7 +148,7 @@ function moveMin({keyCode}) {
             case '1':
                 if(turn === 2) {
                     map[activeMin.position.y][activeMin.position.x].textContent = 2
-                    changeTurn()
+                    changeRound()
                 }
                 break;
             case '2':

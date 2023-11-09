@@ -6,12 +6,11 @@ body {
     text-align: center;
 }
 h1 {
-    border: solid black;
+    color: black;
     position: absolute;
 
-    top: -3.8%;
+    top: -10%;
     left: 40%;
-    right: 
 }
 /* canvas {
     box-shadow: black 20px 10px 50px;
@@ -55,8 +54,17 @@ div {
     bottom: 0;
     right: 0
 }
+#round {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+
+    top: -2%;
+    left: 43%;
+}
 #turn {
     border: solid black;
+    color: white;
     position: absolute;
 
     top: 5%
