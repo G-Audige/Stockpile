@@ -1,13 +1,17 @@
 document.querySelector('title').textContent = "Top Min"
 
 // Declarations
+const maxRounds = 5
+
 let turn = 1
 let round = 1
+
 let tiles = document.querySelectorAll('.tile')
 let displayTurn = document.querySelector('#turn')
 let displayRound = document.querySelector('#round')
 let displaySteps = document.querySelector('#steps')
 let displayPips = document.querySelector('#pips')
+
 let row1 = document.querySelector('#row1').children
 let row2 = document.querySelector('#row2').children
 let row3 = document.querySelector('#row3').children
@@ -62,12 +66,6 @@ class Minikin {
 }
 
 // Functions
-function updateDisplay() {
-    displayTurn.textContent = `Turn: ${turn}`
-    displayRound.textContent = `Round: ${round}`
-    displaySteps.textContent = `Steps Remaining: ${activeMin.stamina}`
-    displayPips.textContent = `Food Pips: ${activeMin.foodPipsHeld}`
-}
 function changeTurn() {
     if(turn === 1) {
         turn++
@@ -283,6 +281,12 @@ function spawnPips() {
             drawBoard(activeMin.position.color)
         }
     }
+}
+function updateDisplay() {
+    displayTurn.textContent = `Turn: ${turn}`
+    displayRound.textContent = `Round: ${round}`
+    displaySteps.textContent = `Steps Remaining: ${activeMin.stamina}`
+    displayPips.textContent = `Food Pips: ${activeMin.foodPipsHeld}`
 }
 
 // Page setup
