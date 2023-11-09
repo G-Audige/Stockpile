@@ -21,6 +21,7 @@ let startScreen = document.querySelector('#start-game')
 let transitionScreen = document.querySelector('#round-transition')
 let tally = document.querySelector('#pip-tally')
 let endScreen = document.querySelector('#end-game')
+let winner = document.querySelector('#winner')
 
 let row1 = document.querySelector('#row1').children
 let row2 = document.querySelector('#row2').children
@@ -110,11 +111,10 @@ function checkPips() {
         spawnPips()
     }
 }
-function clearPips() {   
+function clearBoard() {   
     tiles.forEach( tile => {
         tile.textContent = tile.innerHTML
     })
-
 }
 function depositPips() {
     if(turn === 1) {
@@ -286,13 +286,23 @@ function resetGame() {
     round = 1
     nest1 = 0
     nest2 = 0
-    clearPips()
+    clearBoard()
     endScreen.style.display = 'none'
     showStartScreen()
 }
 function showEndScreen() {
     gameScreen.style.display = 'none'
     endScreen.style.display = 'inline'
+    tally.textContent = `The score is ${nest1} to ${nest2}.`
+    if(nest1 > nest2) {
+        winner.textContent = "Blue the Bountiful is the new Top Min!"
+    }
+    else if(nest2 > nest1) {
+        winner.textContent = "Purple the Prosperous is the new Top Min!"
+    }
+    else {
+        winner.textContent = "Finding their hoards to be equal, Blue and Purple both vow to come out on top next year."
+    }
 }
 function showStartScreen() {
     startScreen.style.display = 'inline'
