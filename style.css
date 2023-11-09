@@ -7,6 +7,11 @@ body {
 }
 h1 {
     border: solid black;
+    position: absolute;
+
+    top: -3%;
+    left: 40%;
+    right: 
 }
 /* canvas {
     box-shadow: black 20px 10px 50px;
@@ -21,6 +26,12 @@ h1 {
 } */
 div {
     margin: auto;
+}
+p {
+    border: solid black;
+    position: absolute;
+
+    top: 0
 }
 
 /* Classes */
@@ -50,10 +61,10 @@ div {
     right: 0
 }
 #ui {
-    background-color: black;
+    /* background-color: black; */
     border: solid black;
     color: white;
-    height: 620px;
+    height: 650px;
     position: absolute;
     width: 600px;
 

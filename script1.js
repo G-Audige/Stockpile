@@ -1,7 +1,7 @@
 document.querySelector('title').textContent = "Top Min"
 
 // Declarations
-let turn = 2
+let turn = 1
 let tiles = document.querySelectorAll('.tile')
 let row1 = document.querySelector('#row1').children
 let row2 = document.querySelector('#row2').children
@@ -55,6 +55,7 @@ class Minikin {
         }
     }
 }
+
 // Functions
 function changeTurn() {
     if(turn === 1) {
@@ -210,6 +211,7 @@ function moveMin({keyCode}) {
                 map[activeMin.position.y][activeMin.position.x].textContent = 2
                 changeTurn()
             }
+            break;
             case '2':
                 map[activeMin.position.y][activeMin.position.x].textContent = 3
                 map[activeMin.position.y][activeMin.position.x - 1].textContent = 4
@@ -251,7 +253,6 @@ function spawnMin() {
         const min2 = new Minikin(map, 20, 8, 'purple')
         activeMin = min2
     }
-    console.log(map[activeMin.position.y][activeMin.position.x].textContent)
     drawBoard(activeMin.position.color)
 }
 
