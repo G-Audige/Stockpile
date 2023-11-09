@@ -293,6 +293,9 @@ function spawnPips() {
     }
     checkPips()
 }
+function transitionRound() {
+    
+}
 function updateDisplay() {
     displayTurn.textContent = `Turn: ${turn}`
     displayRound.textContent = `Round: ${round}`

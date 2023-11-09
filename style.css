@@ -57,6 +57,19 @@ p {
     bottom: 0;
     right: 0
 }
+#end-game {
+    background-color: black;
+    border: solid black;
+    display: none;
+    height: 650px;
+    position: absolute;
+    width: 600px;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0
+}
 #nest1-label {
     font-size: 20px;
     position: absolute;
@@ -96,7 +109,33 @@ p {
     position: absolute;
 
     top: -2%;
-    left: 43%;
+    left: 44%;
+}
+#round-transition {
+    background-color: black;
+    border: solid black;
+    display: none;
+    height: 650px;
+    position: absolute;
+    width: 600px;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0
+}
+#start-game {
+    background-color: black;
+    border: solid black;
+    display: none;
+    height: 650px;
+    position: absolute;
+    width: 600px;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0
 }
 #steps {
     position: absolute;
@@ -114,7 +153,6 @@ p {
 #ui {
     background-color: black;
     border: solid black;
-    color: gray;
     height: 650px;
     position: absolute;
     width: 600px;
