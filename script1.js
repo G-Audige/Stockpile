@@ -1,4 +1,4 @@
-document.querySelector('title').textContent = "Top Min"
+document.querySelector('title').textContent = "Stockpile"
 
 // Declarations
 const maxRounds = 5
@@ -73,21 +73,25 @@ class Minikin {
 
 // Functions
 function changeTurn() {
+    depositPips()
     if(turn === 1) {
-        turn++
-        nest1 += activeMin.foodPipsHeld
+        turn++       
     }
     else {
-        turn--
-        nest2 += activeMin.foodPipsHeld
-    }
-    spawnMin()
-    
+        turn--      
+    } 
+    spawnMin()  
 }
 function changeRound() {
-    round++
-    changeTurn()
-    spawnMin()
+    if(round < maxRounds){
+        round++
+        changeTurn()
+        spawnMin()
+    }
+    else {
+        depositPips()
+        endGame()
+    }
 }
 function checkPips() {
     let pipCount = 0
@@ -100,6 +104,14 @@ function checkPips() {
     }
     if(pipCount <= 3) {
         spawnPips()
+    }
+}
+function depositPips() {
+    if(turn === 1) {
+        nest1 += activeMin.foodPipsHeld
+    }
+    else {
+        nest2 += activeMin.foodPipsHeld 
     }
 }
 function drawBoard(minColor) {
@@ -124,6 +136,9 @@ function drawBoard(minColor) {
         }
     })
     updateDisplay()
+}
+function endGame() {
+    activeMin = null
 }
 function moveMin({keyCode}) {
     let up = map[activeMin.position.y - 1][activeMin.position.x].textContent
