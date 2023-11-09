@@ -20,6 +20,7 @@ let gameScreen = document.querySelector('#board')
 let startScreen = document.querySelector('#start-game')
 let transitionScreen = document.querySelector('#round-transition')
 let tally = document.querySelector('#pip-tally')
+let finalResults = document.querySelector('#end-tally')
 let endScreen = document.querySelector('#end-game')
 let winner = document.querySelector('#winner')
 
@@ -293,7 +294,7 @@ function resetGame() {
 function showEndScreen() {
     gameScreen.style.display = 'none'
     endScreen.style.display = 'inline'
-    tally.textContent = `The score is ${nest1} to ${nest2}.`
+    finalResults.textContent = `The score is ${nest1} to ${nest2}.`
     if(nest1 > nest2) {
         winner.textContent = "Blue the Bountiful is the new Top Min!"
     }
