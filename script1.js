@@ -131,19 +131,7 @@ function moveMin({keyCode}) {
     if(keyCode === 87 || keyCode === 38) {
         switch(up) {
             case '2':
-                map[activeMin.position.y][activeMin.position.x].textContent = 3
-                map[activeMin.position.y - 1][activeMin.position.x].textContent = 4
-                activeMin.position.y--
-                activeMin.stamina--
-                activeMin.counter--
-                break;
             case '3':
-                map[activeMin.position.y][activeMin.position.x].textContent = 2
-                map[activeMin.position.y - 1][activeMin.position.x].textContent = 4                   
-                activeMin.position.y--
-                activeMin.stamina-- 
-                activeMin.counter--
-                break;
             case '5':
                 if(sides.includes('2')) {
                     map[activeMin.position.y][activeMin.position.x].textContent = 3
@@ -171,20 +159,7 @@ function moveMin({keyCode}) {
                 }
                 break;
             case '2':
-                map[activeMin.position.y][activeMin.position.x].textContent = 3
-                map[activeMin.position.y][activeMin.position.x + 1].textContent = 4
-                activeMin.position.x++
-                activeMin.stamina--
-                activeMin.counter--
-                break;
             case '3':
-                map[activeMin.position.y][activeMin.position.x].textContent = 2
-                map[activeMin.position.y][activeMin.position.x + 1].textContent = 4
-                activeMin.position.x++
-                activeMin.stamina--
-                activeMin.counter--
-
-                break;
             case '5':
                 if(sides.includes('2')) {
                     map[activeMin.position.y][activeMin.position.x].textContent = 3
@@ -206,19 +181,7 @@ function moveMin({keyCode}) {
     else if(keyCode === 83 || keyCode === 40) {
         switch(down) {
             case '2':
-                map[activeMin.position.y][activeMin.position.x].textContent = 3
-                map[activeMin.position.y + 1][activeMin.position.x].textContent = 4
-                activeMin.position.y++
-                activeMin.stamina--
-                activeMin.counter--
-                break;
             case '3':
-                map[activeMin.position.y][activeMin.position.x].textContent = 2
-                map[activeMin.position.y + 1][activeMin.position.x].textContent = 4
-                activeMin.position.y++
-                activeMin.stamina--
-                activeMin.counter--
-                break;
             case '5':
                 if(sides.includes('2')) {
                     map[activeMin.position.y][activeMin.position.x].textContent = 3
@@ -246,19 +209,7 @@ function moveMin({keyCode}) {
             }
             break;
             case '2':
-                map[activeMin.position.y][activeMin.position.x].textContent = 3
-                map[activeMin.position.y][activeMin.position.x - 1].textContent = 4
-                activeMin.position.x--
-                activeMin.stamina--
-                activeMin.counter--
-                break;
             case '3':
-                map[activeMin.position.y][activeMin.position.x].textContent = 2
-                map[activeMin.position.y][activeMin.position.x - 1].textContent = 4
-                activeMin.position.x--
-                activeMin.stamina--
-                activeMin.counter--
-                break;
             case '5':
                 if(sides.includes('2')) {
                     map[activeMin.position.y][activeMin.position.x].textContent = 3
