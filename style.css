@@ -57,11 +57,25 @@ p {
     bottom: 0;
     right: 0
 }
+#nest1-label {
+    font-size: 20px;
+    position: absolute;
+
+    top: 83%;
+    left: 2%
+}
+#nest2-label {
+    font-size: 20px;
+    position: absolute;
+
+    top: 83%;
+    left: 71%
+}
 #pips {
     position: absolute;
     
     top: 10%;
-    left: 82%
+    left: 83%
 }
 #round {
     font-size: 20px;
@@ -96,12 +110,3 @@ p {
     bottom: 0;
     right: 0
 }
-/* #ui {
-    background-color: black;
-}
-#tile-borders {
-    background-color: gray;
-}
-#board {
-    background-color: transparent;
-} */

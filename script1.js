@@ -3,8 +3,12 @@ document.querySelector('title').textContent = "Top Min"
 // Declarations
 const maxRounds = 5
 
+let activeMin
 let turn = 1
 let round = 1
+let nest1 = 0
+let nest2 = 0
+
 
 let tiles = document.querySelectorAll('.tile')
 let displayTurn = document.querySelector('#turn')
