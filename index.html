@@ -30,9 +30,11 @@
         </div>
         <div id="round-transition">
             <p id="pip-tally">The score is</p>
-            <button id="round-button">On to the next day!</button>
+            <button id="round-button" onclick=transitionRound()>On to the next day!</button>
         </div>
-        <div id="end-game"></div>
+        <div id="end-game">
+            <button id="reset-button" onclick=resetGame()>Reset</button>
+        </div>
         <div id="board">
 
             <div class="row" id="row1">

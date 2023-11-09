@@ -19,6 +19,7 @@ let displayHoard2 = document.querySelector('#nest2')
 let gameScreen = document.querySelector('#board')
 let startScreen = document.querySelector('#start-game')
 let transitionScreen = document.querySelector('#round-transition')
+let tally = document.querySelector('#pip-tally')
 let endScreen = document.querySelector('#end-game')
 
 let row1 = document.querySelector('#row1').children
@@ -88,8 +89,8 @@ function changeTurn() {
 function changeRound() {
     if(round < maxRounds){
         round++
-        changeTurn()
-        spawnMin()
+        depositPips()
+        showTransitionScreen()     
     }
     else {
         depositPips()
@@ -333,7 +334,15 @@ function startGame() {
     spawnPips()
 }
 function transitionRound() {
-
+    transitionScreen.style.display = 'none'
+    gameScreen.style.display = 'inline'
+    changeTurn()
+    spawnMin()
+}
+function showTransitionScreen() {
+    gameScreen.style.display = 'none'
+    tally.textContent = `The score is ${nest1} to ${nest2}.`
+    transitionScreen.style.display = 'inline'
 }
 function updateDisplay() {
     displayTurn.textContent = `Turn: ${turn}`

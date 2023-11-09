@@ -115,7 +115,7 @@ p {
 #start-game {
     background-color: black;
     border: solid black;
-    display: inline-block;
+    display: inline;
     height: 650px;
     position: absolute;
     width: 600px;
