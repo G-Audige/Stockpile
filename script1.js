@@ -81,6 +81,19 @@ function changeRound() {
     changeTurn()
     spawnMin()
 }
+function checkPips() {
+    let pipCount = 0
+    for(let x = 0; x < map.length; x++) {
+        for(let y = 0; y < map[x].length; y++) {
+            if(map[x][y].textContent == 5) {
+                pipCount++
+            }                      
+        }
+    }
+    if(pipCount <= 3) {
+        spawnPips()
+    }
+}
 function drawBoard(minColor) {
     tiles.forEach( tile => {
         if(tile.textContent == 0) {
@@ -259,6 +272,10 @@ function moveMin({keyCode}) {
         }
         drawBoard(activeMin.position.color)
     }
+    if(activeMin.counter === 0) {
+        activeMin.counter = 10
+        checkPips()
+    }
 }
 function spawnMin() {
     if(turn === 1) {
@@ -281,6 +298,7 @@ function spawnPips() {
             drawBoard(activeMin.position.color)
         }
     }
+    checkPips()
 }
 function updateDisplay() {
     displayTurn.textContent = `Turn: ${turn}`
