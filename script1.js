@@ -1,7 +1,7 @@
 document.querySelector('title').textContent = "Top Min"
 
 // Declarations
-let turn = 1
+let turn = 2
 let tiles = document.querySelectorAll('.tile')
 let row1 = document.querySelector('#row1').children
 let row2 = document.querySelector('#row2').children
@@ -56,6 +56,15 @@ class Minikin {
     }
 }
 // Functions
+function changeTurn() {
+    if(turn === 1) {
+        turn++
+    }
+    else {
+        turn--
+    }
+    spawnMin()
+}
 function drawBoard(minColor) {
     tiles.forEach( tile => {
         if(tile.textContent == 0) {
@@ -81,8 +90,8 @@ function drawBoard(minColor) {
 function moveMin({keyCode}) {
     let up = map[activeMin.position.y - 1][activeMin.position.x].textContent
     let down = map[activeMin.position.y + 1][activeMin.position.x].textContent
-    let right = map[activeMin.position.y][activeMin.position.x - 1].textContent
-    let left = map[activeMin.position.y][activeMin.position.x + 1].textContent
+    let right = map[activeMin.position.y][activeMin.position.x + 1].textContent
+    let left = map[activeMin.position.y][activeMin.position.x - 1].textContent
     let sides = [up, down, right, left]
     // Up
     if(keyCode === 87 || keyCode === 38) {
@@ -121,6 +130,12 @@ function moveMin({keyCode}) {
     // Right
     else if(keyCode === 68 || keyCode === 39) {
         switch(right) {
+            case '1':
+                if(turn === 2) {
+                    map[activeMin.position.y][activeMin.position.x].textContent = 2
+                    changeTurn()
+                }
+                break;
             case '2':
                 map[activeMin.position.y][activeMin.position.x].textContent = 3
                 map[activeMin.position.y][activeMin.position.x + 1].textContent = 4
@@ -190,6 +205,11 @@ function moveMin({keyCode}) {
     // Left
     else if(keyCode === 65 || keyCode === 37) {
         switch(left) {
+            case '1':
+                if(turn === 1) {
+                map[activeMin.position.y][activeMin.position.x].textContent = 2
+                changeTurn()
+            }
             case '2':
                 map[activeMin.position.y][activeMin.position.x].textContent = 3
                 map[activeMin.position.y][activeMin.position.x - 1].textContent = 4
