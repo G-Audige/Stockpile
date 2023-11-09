@@ -57,6 +57,12 @@ p {
     bottom: 0;
     right: 0
 }
+#pips {
+    position: absolute;
+    
+    top: 10%;
+    left: 82%
+}
 #round {
     font-size: 20px;
     position: absolute;
@@ -67,7 +73,7 @@ p {
 #steps {
     position: absolute;
     
-    top: 9%;
+    top: 10%;
     left: 2%
 }
 #turn {

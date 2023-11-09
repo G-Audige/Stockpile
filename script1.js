@@ -6,7 +6,8 @@ let round = 1
 let tiles = document.querySelectorAll('.tile')
 let displayTurn = document.querySelector('#turn')
 let displayRound = document.querySelector('#round')
-let displaysteps = document.querySelector('#steps')
+let displaySteps = document.querySelector('#steps')
+let displayPips = document.querySelector('#pips')
 let row1 = document.querySelector('#row1').children
 let row2 = document.querySelector('#row2').children
 let row3 = document.querySelector('#row3').children
@@ -64,7 +65,8 @@ class Minikin {
 function updateDisplay() {
     displayTurn.textContent = `Turn: ${turn}`
     displayRound.textContent = `Round: ${round}`
-    displaysteps.textContent = `Steps Remaining: ${activeMin.stamina}`
+    displaySteps.textContent = `Steps Remaining: ${activeMin.stamina}`
+    displayPips.textContent = `Food Pips: ${activeMin.foodPipsHeld}`
 }
 function changeTurn() {
     if(turn === 1) {
@@ -139,7 +141,7 @@ function moveMin({keyCode}) {
                 activeMin.position.y--
                 activeMin.stamina-- 
                 activeMin.counter--
-                activeMin.foodPips++
+                activeMin.foodPipsHeld++
                 break;
         }
         drawBoard(activeMin.position.color) 
@@ -180,7 +182,7 @@ function moveMin({keyCode}) {
                 activeMin.position.x++
                 activeMin.stamina--
                 activeMin.counter--
-                activeMin.foodPips++
+                activeMin.foodPipsHeld++
                 break;
         }
         drawBoard(activeMin.position.color)
@@ -214,7 +216,7 @@ function moveMin({keyCode}) {
                 activeMin.position.y++
                 activeMin.stamina--
                 activeMin.counter--
-                activeMin.foodPips++
+                activeMin.foodPipsHeld++
                 break;
         }
         drawBoard(activeMin.position.color)
@@ -254,7 +256,7 @@ function moveMin({keyCode}) {
                 activeMin.position.x--
                 activeMin.stamina--
                 activeMin.counter--
-                activeMin.foodPips++
+                activeMin.foodPipsHeld++
                 break;
         }
         drawBoard(activeMin.position.color)
