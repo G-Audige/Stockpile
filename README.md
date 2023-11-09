@@ -1,2 +1,2 @@
 # Stockpile
-Link to git page => https://g-audige.github.io/Stockpile/
+Link to github page => https://g-audige.github.io/Stockpile/

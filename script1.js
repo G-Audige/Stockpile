@@ -61,7 +61,7 @@ class Minikin {
 }
 
 // Functions
-function changeDisplay() {
+function updateDisplay() {
     displayTurn.textContent = `Turn: ${turn}`
     displayRound.textContent = `Round: ${round}`
     displaysteps.textContent = `Steps Remaining: ${activeMin.stamina}`
@@ -102,7 +102,7 @@ function drawBoard(minColor) {
             tile.style.backgroundColor = 'red'
         }
     })
-    changeDisplay()
+    updateDisplay()
 }
 function moveMin({keyCode}) {
     let up = map[activeMin.position.y - 1][activeMin.position.x].textContent
