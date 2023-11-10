@@ -9,7 +9,7 @@ let round = 1
 let nest1 = 0
 let nest2 = 0
 
-let tiles = document.querySelectorAll('.tile')
+const tiles = document.querySelectorAll('.tile')
 let displayTurn = document.querySelector('#turn')
 let displayRound = document.querySelector('#round')
 let displaySteps = document.querySelector('#steps')
@@ -41,6 +41,7 @@ let row14 = document.querySelector('#row14').children
 let row15 = document.querySelector('#row15').children
 let row16 = document.querySelector('#row16').children
 let row17 = document.querySelector('#row17').children
+let freshTiles = []
 let map = [
     row1,
     row2,
@@ -113,9 +114,9 @@ function checkPips() {
     }
 }
 function clearBoard() {   
-    tiles.forEach( tile => {
-        tile.textContent = tile.innerHTML
-    })
+    for(let i = 0; i < tiles.length; i++){
+        tiles[i].textContent = freshTiles[i]
+    }
 }
 function depositPips() {
     if(turn === 1) {
@@ -187,7 +188,8 @@ function moveMin({keyCode}) {
             case '1':
                 if(turn === 2) {
                     map[activeMin.position.y][activeMin.position.x].textContent = 2
-                    changeRound()
+                    drawBoard('green')
+                    changeRound()         
                 }
                 break;
             case '2':
@@ -206,9 +208,9 @@ function moveMin({keyCode}) {
                 activeMin.counter--
                 if(right == 5)
                 activeMin.foodPipsHeld++
+                drawBoard(activeMin.position.color)
                 break;
-        }
-        drawBoard(activeMin.position.color)
+        }      
     }
     // Down
     else if(keyCode === 83 || keyCode === 40) {
@@ -281,6 +283,7 @@ function moveMin({keyCode}) {
             changeTurn()
         }
     }
+    
 }
 function resetGame() {
     turn = 1
@@ -341,7 +344,7 @@ function startGame() {
     startScreen.style.display = 'none'
     gameScreen.style.display = 'inline'
     spawnMin()
-    spawnPips()
+    checkPips()
 }
 function transitionRound() {
     transitionScreen.style.display = 'none'
@@ -359,7 +362,9 @@ function updateDisplay() {
 }
 
 // Page setup
-
+tiles.forEach( tile => {
+    freshTiles.push(tile.textContent)
+})
 
 // Event Listeners
 document.addEventListener('keydown', moveMin)
