@@ -1,152 +1,151 @@
 /* Tags */
 body {
-    background-color: #CCCCFF;
-    text-align: center;
+  background-color: #ccccff;
+  text-align: center;
 }
 h1 {
-    color: black;
-    position: absolute;
+  color: black;
+  position: absolute;
 
-    top: -11%;
-    left: 40%;
+  top: -11%;
+  left: 40%;
 }
 div {
-    margin: auto;
+  margin: auto;
 }
 p {
-    color: white;
+  color: white;
 }
-
 
 /* Classes */
 .row {
-    display: flex;
-    height: 25.5px;
-    width: 574px
+  display: flex;
+  height: 25.5px;
+  width: 574px;
 }
 .tile {
-    border: 0.5px solid gray;
-    color: transparent;
-    height: 25px;
-    width: 25px
+  border: 0.5px solid gray;
+  color: transparent;
+  height: 25px;
+  width: 25px;
 }
 
 /* Ids */
 #board {
-    background-color: gray;
-    border: 2px solid gray;
-    display: none;
-    height: 434px;
-    width: 575px;
-    position: absolute;
+  background-color: gray;
+  border: 2px solid gray;
+  display: none;
+  height: 434px;
+  width: 575px;
+  position: absolute;
 
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 #end-game {
-    background-color: black;
-    border: solid black;
-    display: none;
-    height: 600px;
-    position: absolute;
-    width: 600px;
+  background-color: black;
+  border: solid black;
+  display: none;
+  height: 600px;
+  position: absolute;
+  width: 600px;
 
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 #nest1-label {
-    font-size: 20px;
-    position: absolute;
+  font-size: 20px;
+  position: absolute;
 
-    top: 84%;
-    left: 2%
+  top: 84%;
+  left: 2%;
 }
 #nest1 {
-    font-size: 18px;
-    position: absolute;
+  font-size: 18px;
+  position: absolute;
 
-    top: 89%;
-    left: 2%
+  top: 89%;
+  left: 2%;
 }
 #nest2-label {
-    font-size: 20px;
-    position: absolute;
+  font-size: 20px;
+  position: absolute;
 
-    top: 84%;
-    left: 71%
+  top: 84%;
+  left: 71%;
 }
 #nest2 {
-    font-size: 18px;
-    position: absolute;
+  font-size: 18px;
+  position: absolute;
 
-    top: 89%;
-    left: 71%
+  top: 89%;
+  left: 71%;
 }
 #pips {
-    position: absolute;
-    
-    top: 7%;
-    left: 83%
+  position: absolute;
+
+  top: 7%;
+  left: 83%;
 }
 #round {
-    font-size: 20px;
-    position: absolute;
+  font-size: 20px;
+  position: absolute;
 
-    top: -2%;
-    left: 44%;
+  top: -2%;
+  left: 44%;
 }
 #round-transition {
-    background-color: black;
-    border: solid black;
-    display: none;
-    height: 600px;
-    position: absolute;
-    width: 600px;
+  background-color: black;
+  border: solid black;
+  display: none;
+  height: 600px;
+  position: absolute;
+  width: 600px;
 
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 #start-game {
-    background-color: black;
-    border: solid black;
-    display: inline;
-    height: 600px;
-    position: absolute;
-    width: 600px;
+  background-color: black;
+  border: solid black;
+  display: inline;
+  height: 600px;
+  position: absolute;
+  width: 600px;
 
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 #steps {
-    position: absolute;
-    
-    top: 7%;
-    left: 2%
+  position: absolute;
+
+  top: 7%;
+  left: 2%;
 }
 #turn {
-    border: solid black;
-    position: absolute;
+  border: solid black;
+  position: absolute;
 
-    top: -1%;
-    left: 2%
+  top: -1%;
+  left: 2%;
 }
 #ui {
-    background-color: black;
-    border: solid black;
-    height: 600px;
-    position: absolute;
-    width: 600px;
+  background-color: black;
+  border: solid black;
+  height: 600px;
+  position: absolute;
+  width: 600px;
 
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
