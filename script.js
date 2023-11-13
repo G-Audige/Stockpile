@@ -8,7 +8,9 @@ let turn = 1;
 let round = 1;
 let nest1 = 0;
 let nest2 = 0;
+let freshTiles = [];
 
+  // Queries
 const tiles = document.querySelectorAll(".tile");
 let displayTurn = document.querySelector("#turn");
 let displayRound = document.querySelector("#round");
@@ -41,7 +43,6 @@ let row14 = document.querySelector("#row14").children;
 let row15 = document.querySelector("#row15").children;
 let row16 = document.querySelector("#row16").children;
 let row17 = document.querySelector("#row17").children;
-let freshTiles = [];
 let map = [
   row1,
   row2,
@@ -337,6 +338,7 @@ function transitionRound() {
   gameScreen.style.display = "inline";
   changeTurn();
   spawnMin();
+  checkPips()
 }
 function updateDisplay() {
   displayTurn.textContent = `Turn: ${turn}`;
