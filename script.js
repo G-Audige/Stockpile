@@ -11,7 +11,7 @@ let nest2 = 0;
 let freshTiles = [];
 
   // Queries
-const tiles = document.querySelectorAll(".tile");
+let tiles = document.querySelectorAll(".tile");
 let displayTurn = document.querySelector("#turn");
 let displayRound = document.querySelector("#round");
 let displaySteps = document.querySelector("#steps");
@@ -184,7 +184,7 @@ function moveMin({ keyCode }) {
       case "1":
         if (turn === 2) {
           map[activeMin.position.y][activeMin.position.x].textContent = 2;
-          drawBoard("green");
+          // drawBoard(activeMin.position.color);
           changeRound();
         }
         break;
@@ -201,10 +201,10 @@ function moveMin({ keyCode }) {
         activeMin.position.x++;
         activeMin.stamina--;
         activeMin.counter--;
-        if (right == 5) activeMin.foodPipsHeld++;
-        drawBoard(activeMin.position.color);
+        if (right == 5) activeMin.foodPipsHeld++;   
         break;
     }
+    drawBoard(activeMin.position.color);
   }
   // Down
   else if (keyCode === 83 || keyCode === 40) {
